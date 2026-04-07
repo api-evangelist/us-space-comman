@@ -4,8 +4,7 @@ url: >-
 apis:
   - aid: us-space-comman:us-space-comman
     name: US Space Comman
-    tags:
-      - API
+    tags: []
     humanURL: https://www.spacecom.mil
     properties:
       - url: https://www.spacecom.mil
