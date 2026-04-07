@@ -26,15 +26,12 @@ created: '2024-12-03'
 modified: '2026-03-16'
 position: Consuming
 description: >-
-  US Space Command is a unified combatant command in the United States
-  Department of Defense that is responsible for conducting operations in, from,
-  and through space to deter conflict and, if necessary, defeat aggressors in
-  order to protect and defend U.S. interests and allies. The command is focused
-  on ensuring freedom of action in space, deterring hostile actions in space,
-  and conducting space operations in support of national objectives. US Space
-  Command works closely with other branches of the military as well as
-  governmental and commercial partners to achieve its mission of maintaining
-  dominance in the space domain.
+  US Space Command is a unified combatant command in the United States Department
+  of Defense that is responsible for conducting operations in, from, and through space
+  to deter conflict and, if necessary, defeat aggressors in order to protect and defend
+  U.S. interests and allies. The command is focused on ensuring freedom of action
+  in space, deterring hostile actions in space, and conducting space operations in
+  support of national objectives.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
