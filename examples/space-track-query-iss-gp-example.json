@@ -1,0 +1,52 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://www.space-track.org/basicspacedata/query/class/gp/NORAD_CAT_ID/25544/format/json",
+    "description": "Query current orbital elements for the International Space Station (NORAD ID 25544)",
+    "notes": "Requires prior authentication via POST /ajaxauth/login. Use session cookie."
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "CCSDS_OMM_VERS": "2.0",
+        "COMMENT": "GENERATED VIA SPACE-TRACK.ORG API",
+        "CREATION_DATE": "2026-05-01 10:30:00",
+        "ORIGINATOR": "18 SDS",
+        "OBJECT_NAME": "ISS (ZARYA)",
+        "OBJECT_ID": "1998-067A",
+        "CENTER_NAME": "EARTH",
+        "REF_FRAME": "TEME",
+        "TIME_SYSTEM": "UTC",
+        "MEAN_ELEMENT_THEORY": "SGP4",
+        "EPOCH": "2026-04-30T22:15:30.123456",
+        "MEAN_MOTION": 15.50316321,
+        "ECCENTRICITY": 0.000148,
+        "INCLINATION": 51.6410,
+        "RA_OF_ASC_NODE": 195.8320,
+        "ARG_OF_PERICENTER": 123.4560,
+        "MEAN_ANOMALY": 236.7890,
+        "EPHEMERIS_TYPE": 0,
+        "CLASSIFICATION_TYPE": "U",
+        "NORAD_CAT_ID": 25544,
+        "ELEMENT_SET_NO": 999,
+        "REV_AT_EPOCH": 144523,
+        "BSTAR": 0.000139,
+        "MEAN_MOTION_DOT": 0.000015,
+        "MEAN_MOTION_DDOT": 0,
+        "SEMIMAJOR_AXIS": 6794.3,
+        "PERIOD": 92.9,
+        "APOGEE": 422.0,
+        "PERIGEE": 410.6,
+        "OBJECT_TYPE": "PAYLOAD",
+        "RCS_SIZE": "LARGE",
+        "COUNTRY_CODE": "ISS",
+        "LAUNCH_DATE": "1998-11-20",
+        "SITE": "TYMSC",
+        "DECAY_DATE": null,
+        "FILE": 3861234,
+        "GP_ID": 299876543
+      }
+    ]
+  }
+}

@@ -1,0 +1,199 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "US Space Command Space Situational Awareness"
+  description: >-
+    Unified capability for space situational awareness (SSA) operations,
+    combining orbital element tracking, satellite catalog queries, conjunction
+    monitoring, and reentry prediction. Supports satellite operators, aerospace
+    researchers, and space traffic management teams.
+  tags:
+    - Space Situational Awareness
+    - Orbital Data
+    - Satellite Tracking
+    - Federal Government
+    - Collision Avoidance
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      SPACE_TRACK_USERNAME: SPACE_TRACK_USERNAME
+      SPACE_TRACK_PASSWORD: SPACE_TRACK_PASSWORD
+
+capability:
+  consumes:
+    - import: space-track
+      location: ./shared/space-track.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: ssa-api
+      description: "Unified REST API for space situational awareness data."
+      resources:
+        - path: /v1/satellites
+          name: satellites
+          description: "Space objects with current orbital elements"
+          operations:
+            - method: GET
+              name: search-satellites
+              description: "Search tracked space objects by name, NORAD ID, or country"
+              call: "space-track.list-current-gp"
+              with:
+                NORAD_CAT_ID: "rest.norad_cat_id"
+                OBJECT_NAME: "rest.object_name"
+                COUNTRY_CODE: "rest.country_code"
+                EPOCH: "rest.epoch"
+                limit: "rest.limit"
+              outputParameters:
+                - type: array
+                  mapping: "$."
+        - path: /v1/catalog
+          name: catalog
+          description: "Satellite catalog metadata"
+          operations:
+            - method: GET
+              name: search-catalog
+              description: "Search the satellite catalog"
+              call: "space-track.list-satcat"
+              with:
+                NORAD_CAT_ID: "rest.norad_cat_id"
+                OBJECT_TYPE: "rest.object_type"
+                COUNTRY_CODE: "rest.country_code"
+                DECAY_DATE: "rest.decay_date"
+                limit: "rest.limit"
+              outputParameters:
+                - type: array
+                  mapping: "$."
+        - path: /v1/conjunctions
+          name: conjunctions
+          description: "Collision warnings and conjunction data"
+          operations:
+            - method: GET
+              name: list-conjunctions
+              description: "List conjunction data messages by collision probability"
+              call: "space-track.list-conjunctions"
+              with:
+                SAT_1_ID: "rest.sat_1_id"
+                PC: "rest.pc_threshold"
+                orderby: "PC desc"
+                limit: "rest.limit"
+              outputParameters:
+                - type: array
+                  mapping: "$."
+        - path: /v1/reentries
+          name: reentries
+          description: "Satellite decay and reentry data"
+          operations:
+            - method: GET
+              name: list-reentries
+              description: "List space objects that have reentered the atmosphere"
+              call: "space-track.list-decays"
+              with:
+                NORAD_CAT_ID: "rest.norad_cat_id"
+                limit: "rest.limit"
+              outputParameters:
+                - type: array
+                  mapping: "$."
+        - path: /v1/catalog/stats
+          name: catalog-stats
+          description: "Space object catalog statistics"
+          operations:
+            - method: GET
+              name: get-catalog-stats
+              description: "Get object counts by country and type"
+              call: "space-track.get-boxscore"
+              outputParameters:
+                - type: array
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: ssa-mcp
+      transport: http
+      description: "MCP server for AI-assisted space situational awareness."
+      tools:
+        - name: search-satellites
+          description: >-
+            Search for tracked space objects by name, NORAD catalog ID, country code,
+            or orbital epoch. Returns current orbital elements including TLE data.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "space-track.list-current-gp"
+          with:
+            NORAD_CAT_ID: "tools.norad_cat_id"
+            OBJECT_NAME: "tools.object_name"
+            COUNTRY_CODE: "tools.country_code"
+            EPOCH: "tools.epoch"
+            DECAY_DATE: "null-val"
+            limit: "tools.limit"
+          outputParameters:
+            - type: array
+              mapping: "$."
+        - name: get-satellite-catalog-entry
+          description: "Look up satellite catalog metadata for a specific NORAD catalog ID"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "space-track.list-satcat"
+          with:
+            NORAD_CAT_ID: "tools.norad_cat_id"
+          outputParameters:
+            - type: array
+              mapping: "$."
+        - name: search-debris-objects
+          description: "Search for space debris objects tracked by USSPACECOM"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "space-track.list-satcat"
+          with:
+            OBJECT_TYPE: "DEBRIS"
+            COUNTRY_CODE: "tools.country_code"
+            DECAY_DATE: "null-val"
+            limit: "tools.limit"
+          outputParameters:
+            - type: array
+              mapping: "$."
+        - name: get-conjunction-warnings
+          description: >-
+            Get active conjunction data messages (CDMs) — collision warnings for
+            close approaches between tracked space objects.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "space-track.list-conjunctions"
+          with:
+            SAT_1_ID: "tools.norad_cat_id"
+            PC: "tools.min_probability"
+            orderby: "PC desc"
+            limit: "tools.limit"
+          outputParameters:
+            - type: array
+              mapping: "$."
+        - name: get-reentry-predictions
+          description: "Get satellite decay and reentry predictions for space objects"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "space-track.list-decays"
+          with:
+            NORAD_CAT_ID: "tools.norad_cat_id"
+            limit: "tools.limit"
+          outputParameters:
+            - type: array
+              mapping: "$."
+        - name: get-space-catalog-statistics
+          description: >-
+            Get a summary count of all tracked space objects (payloads, rocket bodies,
+            debris, unknown) organized by country of origin.
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "space-track.get-boxscore"
+          outputParameters:
+            - type: array
+              mapping: "$."

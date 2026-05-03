@@ -1,0 +1,57 @@
+extends: "spectral:oas"
+rules:
+  space-track-path-class-prefix:
+    description: Space-Track paths should follow /basicspacedata/query/class/{class}/ pattern
+    message: "Space-Track paths should use /basicspacedata/query/class/ prefix"
+    severity: info
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/(basicspacedata|ajaxauth|expandedspacedata)/"
+
+  space-track-operation-summary:
+    description: All operations must have a summary
+    message: "Operation missing summary"
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: summary
+      function: truthy
+
+  space-track-operation-tags:
+    description: Operations must have at least one tag
+    message: "Operation has no tags"
+    severity: warn
+    given: "$.paths[*][*]"
+    then:
+      field: tags
+      function: truthy
+
+  space-track-get-200-response:
+    description: GET operations must define a 200 response
+    message: "GET operation missing 200 response"
+    severity: error
+    given: "$.paths[*].get"
+    then:
+      field: responses.200
+      function: truthy
+
+  space-track-format-path-param:
+    description: Space-Track endpoints should include a format path parameter
+    message: "Endpoint path should include format parameter"
+    severity: info
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "/format/"
+
+  space-track-401-response:
+    description: Authenticated endpoints should document 401 response
+    message: "Authenticated endpoint missing 401 response"
+    severity: warn
+    given: "$.paths[*].get"
+    then:
+      field: responses.401
+      function: truthy

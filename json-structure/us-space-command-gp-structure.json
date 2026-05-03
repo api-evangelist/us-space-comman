@@ -1,0 +1,25 @@
+{
+  "name": "USSPACECOM General Perturbations (GP) Orbital Element",
+  "description": "Structure of orbital element set records from Space-Track.org GP class",
+  "fields": [
+    {"name": "NORAD_CAT_ID", "type": "integer", "required": true, "description": "Unique NORAD catalog number"},
+    {"name": "OBJECT_NAME", "type": "string", "required": true, "description": "Object name"},
+    {"name": "OBJECT_ID", "type": "string", "required": false, "description": "International designator"},
+    {"name": "OBJECT_TYPE", "type": "string", "required": false, "description": "PAYLOAD, ROCKET BODY, DEBRIS, UNKNOWN"},
+    {"name": "CLASSIFICATION_TYPE", "type": "string", "required": false, "description": "U = Unclassified"},
+    {"name": "EPOCH", "type": "datetime", "required": true, "description": "Element set epoch"},
+    {"name": "MEAN_MOTION", "type": "number", "required": false, "description": "Rev/day"},
+    {"name": "ECCENTRICITY", "type": "number", "required": true, "description": "0 to 1"},
+    {"name": "INCLINATION", "type": "number", "required": true, "description": "Degrees"},
+    {"name": "RA_OF_ASC_NODE", "type": "number", "required": false, "description": "RAAN in degrees"},
+    {"name": "ARG_OF_PERICENTER", "type": "number", "required": false, "description": "Argument of perigee"},
+    {"name": "MEAN_ANOMALY", "type": "number", "required": false, "description": "Mean anomaly"},
+    {"name": "BSTAR", "type": "number", "required": false, "description": "Drag term"},
+    {"name": "APOGEE", "type": "number", "required": false, "description": "Apogee altitude km"},
+    {"name": "PERIGEE", "type": "number", "required": false, "description": "Perigee altitude km"},
+    {"name": "PERIOD", "type": "number", "required": false, "description": "Orbital period minutes"},
+    {"name": "COUNTRY_CODE", "type": "string", "required": false, "description": "ISO 3-letter country code"},
+    {"name": "LAUNCH_DATE", "type": "date|null", "required": false, "description": "Launch date"},
+    {"name": "DECAY_DATE", "type": "date|null", "required": false, "description": "Reentry date"}
+  ]
+}

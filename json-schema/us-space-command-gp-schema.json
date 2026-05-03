@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/us-space-comman/main/json-schema/us-space-command-gp-schema.json",
+  "title": "USSPACECOM General Perturbations (GP) Orbital Element Set",
+  "description": "JSON Schema for a space object's orbital element set from Space-Track.org.",
+  "type": "object",
+  "properties": {
+    "NORAD_CAT_ID": {
+      "type": "integer",
+      "description": "NORAD catalog number uniquely identifying the space object"
+    },
+    "OBJECT_NAME": {
+      "type": "string",
+      "description": "Common name of the space object"
+    },
+    "OBJECT_ID": {
+      "type": "string",
+      "description": "International designator (YYYY-NNNPPP format)"
+    },
+    "OBJECT_TYPE": {
+      "type": "string",
+      "enum": ["PAYLOAD", "ROCKET BODY", "DEBRIS", "UNKNOWN", "TBA - TO BE ASSIGNED"],
+      "description": "Classification of the space object"
+    },
+    "CLASSIFICATION_TYPE": {
+      "type": "string",
+      "enum": ["U"],
+      "description": "Data classification (U = Unclassified)"
+    },
+    "EPOCH": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Epoch of the orbital elements"
+    },
+    "MEAN_MOTION": {
+      "type": "number",
+      "description": "Mean motion in revolutions per day"
+    },
+    "ECCENTRICITY": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Orbital eccentricity"
+    },
+    "INCLINATION": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 180,
+      "description": "Orbital inclination in degrees"
+    },
+    "RA_OF_ASC_NODE": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 360,
+      "description": "Right ascension of the ascending node in degrees"
+    },
+    "ARG_OF_PERICENTER": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 360,
+      "description": "Argument of perigee in degrees"
+    },
+    "MEAN_ANOMALY": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 360,
+      "description": "Mean anomaly in degrees"
+    },
+    "BSTAR": {
+      "type": "number",
+      "description": "BSTAR drag term (1/Earth radii)"
+    },
+    "APOGEE": {
+      "type": "number",
+      "description": "Apogee altitude above Earth surface in km"
+    },
+    "PERIGEE": {
+      "type": "number",
+      "description": "Perigee altitude above Earth surface in km"
+    },
+    "PERIOD": {
+      "type": "number",
+      "description": "Orbital period in minutes"
+    },
+    "COUNTRY_CODE": {
+      "type": "string",
+      "description": "ISO 3-letter country code of the launching entity"
+    },
+    "LAUNCH_DATE": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Launch date"
+    },
+    "DECAY_DATE": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Reentry/decay date (null if still in orbit)"
+    }
+  },
+  "required": ["NORAD_CAT_ID", "OBJECT_NAME", "EPOCH", "INCLINATION", "ECCENTRICITY"]
+}

@@ -1,0 +1,31 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://www.space-track.org/basicspacedata/query/class/cdm_public/orderby/PC desc/limit/5/format/json",
+    "description": "Query top 5 conjunction data messages ordered by collision probability (highest first)"
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "CDM_ID": 12345678,
+        "CREATED": "2026-05-01 06:00:00",
+        "EMERGENCY_REPORTABLE": "N",
+        "TCA": "2026-05-03 14:22:33",
+        "MIN_RNG": 0.083,
+        "PC": 0.000856,
+        "SAT_1_ID": 25544,
+        "SAT_1_NAME": "ISS (ZARYA)",
+        "SAT_1_TYPE": "PAYLOAD",
+        "SAT_2_ID": 47311,
+        "SAT_2_NAME": "COSMOS 2251 DEB",
+        "SAT_2_TYPE": "DEBRIS",
+        "MISS_DISTANCE": 0.083,
+        "RELATIVE_SPEED": 14.23,
+        "RELATIVE_POSITION_R": -0.012,
+        "RELATIVE_POSITION_T": 0.054,
+        "RELATIVE_POSITION_N": -0.063
+      }
+    ]
+  }
+}

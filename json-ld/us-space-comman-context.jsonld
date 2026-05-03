@@ -1,0 +1,94 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "space": "https://www.space-track.org/vocab/",
+    "astro": "http://www.ivoa.net/xml/STC/stc-v1.3.xsd#",
+
+    "SpaceObject": "schema:Thing",
+    "OrbitalElements": "space:OrbitalElements",
+    "ConjunctionWarning": "space:Conjunction",
+
+    "NORAD_CAT_ID": {
+      "@id": "space:noradCatalogId",
+      "@type": "xsd:integer"
+    },
+    "OBJECT_NAME": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "OBJECT_ID": {
+      "@id": "space:internationalDesignator",
+      "@type": "xsd:string"
+    },
+    "OBJECT_TYPE": {
+      "@id": "space:objectType",
+      "@type": "xsd:string"
+    },
+    "EPOCH": {
+      "@id": "space:epoch",
+      "@type": "xsd:dateTime"
+    },
+    "MEAN_MOTION": {
+      "@id": "space:meanMotion",
+      "@type": "xsd:double"
+    },
+    "ECCENTRICITY": {
+      "@id": "space:eccentricity",
+      "@type": "xsd:double"
+    },
+    "INCLINATION": {
+      "@id": "space:inclination",
+      "@type": "xsd:double"
+    },
+    "RA_OF_ASC_NODE": {
+      "@id": "space:rightAscensionAscendingNode",
+      "@type": "xsd:double"
+    },
+    "ARG_OF_PERICENTER": {
+      "@id": "space:argumentOfPericenter",
+      "@type": "xsd:double"
+    },
+    "MEAN_ANOMALY": {
+      "@id": "space:meanAnomaly",
+      "@type": "xsd:double"
+    },
+    "APOGEE": {
+      "@id": "space:apogeeAltitude",
+      "@type": "xsd:double"
+    },
+    "PERIGEE": {
+      "@id": "space:perigeeAltitude",
+      "@type": "xsd:double"
+    },
+    "PERIOD": {
+      "@id": "space:orbitalPeriod",
+      "@type": "xsd:double"
+    },
+    "COUNTRY_CODE": {
+      "@id": "schema:addressCountry",
+      "@type": "xsd:string"
+    },
+    "LAUNCH_DATE": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:date"
+    },
+    "DECAY_DATE": {
+      "@id": "space:decayDate",
+      "@type": "xsd:date"
+    },
+    "PC": {
+      "@id": "space:collisionProbability",
+      "@type": "xsd:double"
+    },
+    "TCA": {
+      "@id": "space:timeOfClosestApproach",
+      "@type": "xsd:dateTime"
+    },
+    "MIN_RNG": {
+      "@id": "space:minimumRange",
+      "@type": "xsd:double"
+    }
+  }
+}
