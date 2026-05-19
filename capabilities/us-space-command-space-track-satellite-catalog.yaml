@@ -1,0 +1,174 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Space-Track.org REST API — Satellite Catalog
+  description: 'Space-Track.org REST API — Satellite Catalog. 2 operations. Lead operation: Get Space Object Counts by Country
+    (Boxscore). Self-contained Naftiko capability covering one Us Space Comman business surface.'
+  tags:
+  - Us Space Comman
+  - Satellite Catalog
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    US_SPACE_COMMAN_API_KEY: US_SPACE_COMMAN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: us-space-command-space-track-satellite-catalog
+    baseUri: https://www.space-track.org
+    description: Space-Track.org REST API — Satellite Catalog business capability. Self-contained, no shared references.
+    resources:
+    - name: basicspacedata-query-class-boxscore-format-format
+      path: /basicspacedata/query/class/boxscore/format/{format}
+      operations:
+      - name: getboxscore
+        method: GET
+        description: Get Space Object Counts by Country (Boxscore)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: format
+          in: path
+          type: string
+          required: true
+    - name: basicspacedata-query-class-satcat-format-format
+      path: /basicspacedata/query/class/satcat/format/{format}
+      operations:
+      - name: listsatcat
+        method: GET
+        description: Query Satellite Catalog (SATCAT)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: format
+          in: path
+          type: string
+          required: true
+        - name: NORAD_CAT_ID
+          in: query
+          type: string
+          description: NORAD catalog number
+        - name: INTLDES
+          in: query
+          type: string
+          description: International designator (e.g., 1998-067A for ISS)
+        - name: OBJECT_NAME
+          in: query
+          type: string
+          description: Object name (supports wildcard ~~)
+        - name: OBJECT_TYPE
+          in: query
+          type: string
+          description: Type filter (PAYLOAD, ROCKET BODY, DEBRIS, UNKNOWN)
+        - name: COUNTRY_CODE
+          in: query
+          type: string
+          description: Country code filter
+        - name: LAUNCH_DATE
+          in: query
+          type: string
+          description: Launch date filter
+        - name: DECAY_DATE
+          in: query
+          type: string
+          description: Decay date (use null-val for active objects)
+        - name: orderby
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+    authentication:
+      type: apikey
+      key: chocolatechip
+      value: '{{env.US_SPACE_COMMAN_API_KEY}}'
+      placement: cookie
+  exposes:
+  - type: rest
+    namespace: us-space-command-space-track-satellite-catalog-rest
+    port: 8080
+    description: REST adapter for Space-Track.org REST API — Satellite Catalog. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/basicspacedata/query/class/boxscore/format/{format}
+      name: basicspacedata-query-class-boxscore-format-format
+      description: REST surface for basicspacedata-query-class-boxscore-format-format.
+      operations:
+      - method: GET
+        name: getboxscore
+        description: Get Space Object Counts by Country (Boxscore)
+        call: us-space-command-space-track-satellite-catalog.getboxscore
+        with:
+          format: rest.format
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/basicspacedata/query/class/satcat/format/{format}
+      name: basicspacedata-query-class-satcat-format-format
+      description: REST surface for basicspacedata-query-class-satcat-format-format.
+      operations:
+      - method: GET
+        name: listsatcat
+        description: Query Satellite Catalog (SATCAT)
+        call: us-space-command-space-track-satellite-catalog.listsatcat
+        with:
+          format: rest.format
+          NORAD_CAT_ID: rest.NORAD_CAT_ID
+          INTLDES: rest.INTLDES
+          OBJECT_NAME: rest.OBJECT_NAME
+          OBJECT_TYPE: rest.OBJECT_TYPE
+          COUNTRY_CODE: rest.COUNTRY_CODE
+          LAUNCH_DATE: rest.LAUNCH_DATE
+          DECAY_DATE: rest.DECAY_DATE
+          orderby: rest.orderby
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: us-space-command-space-track-satellite-catalog-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Space-Track.org REST API — Satellite Catalog. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-space-object-counts-country
+      description: Get Space Object Counts by Country (Boxscore)
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: us-space-command-space-track-satellite-catalog.getboxscore
+      with:
+        format: tools.format
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: query-satellite-catalog-satcat
+      description: Query Satellite Catalog (SATCAT)
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: us-space-command-space-track-satellite-catalog.listsatcat
+      with:
+        format: tools.format
+        NORAD_CAT_ID: tools.NORAD_CAT_ID
+        INTLDES: tools.INTLDES
+        OBJECT_NAME: tools.OBJECT_NAME
+        OBJECT_TYPE: tools.OBJECT_TYPE
+        COUNTRY_CODE: tools.COUNTRY_CODE
+        LAUNCH_DATE: tools.LAUNCH_DATE
+        DECAY_DATE: tools.DECAY_DATE
+        orderby: tools.orderby
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
