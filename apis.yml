@@ -1,5 +1,8 @@
 aid: us-space-comman
 url: https://raw.githubusercontent.com/api-evangelist/us-space-comman/refs/heads/main/apis.yml
+common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/usspacecom
 apis:
 - aid: us-space-comman:space-track-api
   name: Space-Track.org REST API
