@@ -1,0 +1,1938 @@
+{
+  "item": [
+    {
+      "id": "0c46f3c6-9799-4ecd-ae25-0b6ec27d6f94",
+      "name": "Authentication",
+      "description": {
+        "content": "Session-based authentication",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fc0fd69b-4e4c-407b-bce3-1af27d29539f",
+          "name": "Authenticate with Space-Track.org",
+          "request": {
+            "name": "Authenticate with Space-Track.org",
+            "description": {
+              "content": "Authenticate using username and password credentials. On success, a session cookie is returned for use in subsequent API requests.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ajaxauth",
+                "login"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "identity",
+                  "value": "<string>",
+                  "description": "(Required) Space-Track.org username (email address)"
+                },
+                {
+                  "disabled": false,
+                  "key": "password",
+                  "value": "<password>",
+                  "description": "(Required) Space-Track.org password"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8914e0ad-b162-43b7-bff5-14aa085b89e5",
+              "name": "Authentication successful — session cookie returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ajaxauth",
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Space-Track.org username (email address)",
+                        "type": "text/plain"
+                      },
+                      "key": "identity",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Space-Track.org password",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "<password>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5328c1d1-f352-4617-a52a-c8db881d895c",
+              "name": "Invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ajaxauth",
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Space-Track.org username (email address)",
+                        "type": "text/plain"
+                      },
+                      "key": "identity",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Space-Track.org password",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "<password>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "c73ad522-f7e2-452b-8268-ea3a3d7e3270",
+      "name": "General Perturbations",
+      "description": {
+        "content": "Current orbital element sets for tracked space objects",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "86d29b6f-369b-40c4-8c3e-d225f88371e9",
+          "name": "List Current General Perturbation Orbital Elements",
+          "request": {
+            "name": "List Current General Perturbation Orbital Elements",
+            "description": {
+              "content": "Returns the latest orbital element sets (GP/TLEs) for tracked objects. The GP class provides the newest element set per object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "basicspacedata",
+                "query",
+                "class",
+                "gp",
+                "format",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "NORAD_CAT_ID",
+                  "value": "<string>",
+                  "description": "NORAD catalog number (e.g., 25544 for ISS)"
+                },
+                {
+                  "disabled": false,
+                  "key": "OBJECT_NAME",
+                  "value": "<string>",
+                  "description": "Object name (supports wildcard ~~)"
+                },
+                {
+                  "disabled": false,
+                  "key": "EPOCH",
+                  "value": "<string>",
+                  "description": "Epoch filter (e.g., >now-30 for last 30 days)"
+                },
+                {
+                  "disabled": false,
+                  "key": "DECAY_DATE",
+                  "value": "<string>",
+                  "description": "Filter for active (null-val) or decayed objects"
+                },
+                {
+                  "disabled": false,
+                  "key": "INCLINATION",
+                  "value": "<string>",
+                  "description": "Orbital inclination filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "PERIOD",
+                  "value": "<string>",
+                  "description": "Orbital period filter (minutes)"
+                },
+                {
+                  "disabled": false,
+                  "key": "APOGEE",
+                  "value": "<string>",
+                  "description": "Apogee altitude filter (km)"
+                },
+                {
+                  "disabled": false,
+                  "key": "PERIGEE",
+                  "value": "<string>",
+                  "description": "Perigee altitude filter (km)"
+                },
+                {
+                  "disabled": false,
+                  "key": "COUNTRY_CODE",
+                  "value": "<string>",
+                  "description": "ISO country code of object owner"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "<string>",
+                  "description": "Sort field and direction (e.g., NORAD_CAT_ID asc)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max number of results"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "json",
+                  "key": "format",
+                  "description": "(Required) Response format"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "04333c26-44cb-42fa-baf4-352f604ee999",
+              "name": "Orbital element sets",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "gp",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "NORAD_CAT_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "OBJECT_NAME",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "EPOCH",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DECAY_DATE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "INCLINATION",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "PERIOD",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "APOGEE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "PERIGEE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "COUNTRY_CODE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) Response format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"CCSDS_OMM_VERS\": \"string\",\n    \"CLASSIFICATION_TYPE\": \"S\",\n    \"NORAD_CAT_ID\": 5159,\n    \"OBJECT_NAME\": \"string\",\n    \"OBJECT_ID\": \"string\",\n    \"OBJECT_TYPE\": \"TBA - TO BE ASSIGNED\",\n    \"EPOCH\": \"1977-01-08T11:04:59.024Z\",\n    \"MEAN_MOTION\": 2101.8535442096877,\n    \"ECCENTRICITY\": 4848.562380186429,\n    \"INCLINATION\": 9150.301865326885,\n    \"RA_OF_ASC_NODE\": 2154.2361686755185,\n    \"ARG_OF_PERICENTER\": 348.70825648596895,\n    \"MEAN_ANOMALY\": 2294.4993259629855,\n    \"EPHEMERIS_TYPE\": 5394,\n    \"ELEMENT_SET_NO\": 352,\n    \"REV_AT_EPOCH\": 2810,\n    \"BSTAR\": 2963.8676417089127,\n    \"APOGEE\": 6115.35924190989,\n    \"PERIGEE\": 7344.381040365258,\n    \"PERIOD\": 1733.389288284115,\n    \"COUNTRY_CODE\": \"string\"\n  },\n  {\n    \"CCSDS_OMM_VERS\": \"string\",\n    \"CLASSIFICATION_TYPE\": \"U\",\n    \"NORAD_CAT_ID\": 134,\n    \"OBJECT_NAME\": \"string\",\n    \"OBJECT_ID\": \"string\",\n    \"OBJECT_TYPE\": \"UNKNOWN\",\n    \"EPOCH\": \"2021-10-04T12:21:25.965Z\",\n    \"MEAN_MOTION\": 6561.713026306566,\n    \"ECCENTRICITY\": 8402.0169850907,\n    \"INCLINATION\": 1798.1802269736181,\n    \"RA_OF_ASC_NODE\": 6573.657823549349,\n    \"ARG_OF_PERICENTER\": 702.4285786719697,\n    \"MEAN_ANOMALY\": 5017.833011383135,\n    \"EPHEMERIS_TYPE\": 1133,\n    \"ELEMENT_SET_NO\": 5091,\n    \"REV_AT_EPOCH\": 8802,\n    \"BSTAR\": 9908.062980232899,\n    \"APOGEE\": 9345.39445336532,\n    \"PERIGEE\": 5287.784511199053,\n    \"PERIOD\": 5971.148825045893,\n    \"COUNTRY_CODE\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "644acd62-8f3e-4155-969d-8cd89dfcac4d",
+              "name": "Unauthorized - authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "gp",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "NORAD_CAT_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "OBJECT_NAME",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "EPOCH",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DECAY_DATE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "INCLINATION",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "PERIOD",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "APOGEE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "PERIGEE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "COUNTRY_CODE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) Response format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b4962f62-8710-4eb9-9a9f-08dbd4477499",
+      "name": "Satellite Catalog",
+      "description": {
+        "content": "Satellite catalog metadata",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "486db4a6-dd5d-4c36-a3b7-0df6b1eb793c",
+          "name": "Query Satellite Catalog (SATCAT)",
+          "request": {
+            "name": "Query Satellite Catalog (SATCAT)",
+            "description": {
+              "content": "Returns satellite catalog information including object metadata, launch dates, countries of origin, and object classification.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "basicspacedata",
+                "query",
+                "class",
+                "satcat",
+                "format",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "NORAD_CAT_ID",
+                  "value": "<string>",
+                  "description": "NORAD catalog number"
+                },
+                {
+                  "disabled": false,
+                  "key": "INTLDES",
+                  "value": "<string>",
+                  "description": "International designator (e.g., 1998-067A for ISS)"
+                },
+                {
+                  "disabled": false,
+                  "key": "OBJECT_NAME",
+                  "value": "<string>",
+                  "description": "Object name (supports wildcard ~~)"
+                },
+                {
+                  "disabled": false,
+                  "key": "OBJECT_TYPE",
+                  "value": "<string>",
+                  "description": "Type filter (PAYLOAD, ROCKET BODY, DEBRIS, UNKNOWN)"
+                },
+                {
+                  "disabled": false,
+                  "key": "COUNTRY_CODE",
+                  "value": "<string>",
+                  "description": "Country code filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "LAUNCH_DATE",
+                  "value": "<string>",
+                  "description": "Launch date filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "DECAY_DATE",
+                  "value": "<string>",
+                  "description": "Decay date (use null-val for active objects)"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "json",
+                  "key": "format",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1bb70647-b98d-4012-a600-f3d723dbe7f3",
+              "name": "Satellite catalog entries",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "satcat",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "NORAD_CAT_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "INTLDES",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "OBJECT_NAME",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "OBJECT_TYPE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "COUNTRY_CODE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "LAUNCH_DATE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DECAY_DATE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"NORAD_CAT_ID\": 2961,\n    \"INTLDES\": \"string\",\n    \"OBJECT_NAME\": \"string\",\n    \"OBJECT_TYPE\": \"PAYLOAD\",\n    \"COUNTRY_CODE\": \"string\",\n    \"LAUNCH_DATE\": \"1980-03-26\",\n    \"SITE\": \"string\",\n    \"DECAY_DATE\": \"2023-11-15\",\n    \"RCSVALUE\": 3073,\n    \"COMMENT\": \"string\",\n    \"CCSDS_OMM_VERS\": \"string\"\n  },\n  {\n    \"NORAD_CAT_ID\": 399,\n    \"INTLDES\": \"string\",\n    \"OBJECT_NAME\": \"string\",\n    \"OBJECT_TYPE\": \"PAYLOAD\",\n    \"COUNTRY_CODE\": \"string\",\n    \"LAUNCH_DATE\": \"1949-07-01\",\n    \"SITE\": \"string\",\n    \"DECAY_DATE\": \"2010-04-20\",\n    \"RCSVALUE\": 3583,\n    \"COMMENT\": \"string\",\n    \"CCSDS_OMM_VERS\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2baab10c-d12a-48ed-bb96-00923c4ac3f9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "satcat",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "NORAD_CAT_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "INTLDES",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "OBJECT_NAME",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "OBJECT_TYPE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "COUNTRY_CODE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "LAUNCH_DATE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DECAY_DATE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e888456-4847-46c9-9cf4-1907d16bcabb",
+          "name": "Get Space Object Counts by Country (Boxscore)",
+          "request": {
+            "name": "Get Space Object Counts by Country (Boxscore)",
+            "description": {
+              "content": "Returns a count of tracked space objects by country and object type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "basicspacedata",
+                "query",
+                "class",
+                "boxscore",
+                "format",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "json",
+                  "key": "format",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3565f814-2674-40dd-93f8-8ac5be832fe6",
+              "name": "Object counts by country",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "boxscore",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f2da5252-cae9-48c1-9617-1bf30c205e3b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "boxscore",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "8b1d5772-c411-412e-95e0-3345c0fbff2f",
+      "name": "Conjunction Data",
+      "description": {
+        "content": "Conjunction data messages (collision warnings)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "552344d1-1e53-447f-8695-c22b562c90f0",
+          "name": "List Conjunction Data Messages (CDM)",
+          "request": {
+            "name": "List Conjunction Data Messages (CDM)",
+            "description": {
+              "content": "Returns publicly available Conjunction Data Messages (CDMs), which are notifications of potential close approaches between tracked objects. Sorted by collision probability descending.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "basicspacedata",
+                "query",
+                "class",
+                "cdm_public",
+                "format",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "SAT_1_ID",
+                  "value": "<string>",
+                  "description": "NORAD ID of primary object"
+                },
+                {
+                  "disabled": false,
+                  "key": "SAT_2_ID",
+                  "value": "<string>",
+                  "description": "NORAD ID of secondary object"
+                },
+                {
+                  "disabled": false,
+                  "key": "TCA_RANGE_START",
+                  "value": "<string>",
+                  "description": "Time of closest approach start filter (ISO 8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "TCA_RANGE_END",
+                  "value": "<string>",
+                  "description": "Time of closest approach end filter (ISO 8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "PC",
+                  "value": "<string>",
+                  "description": "Probability of collision filter (e.g., >0.0001)"
+                },
+                {
+                  "disabled": false,
+                  "key": "MISS_DISTANCE",
+                  "value": "<string>",
+                  "description": "Miss distance filter (km)"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "json",
+                  "key": "format",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a94125c-535f-4fbe-b85a-b1e6a85e608d",
+              "name": "Conjunction data messages",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "cdm_public",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "SAT_1_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "SAT_2_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "TCA_RANGE_START",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "TCA_RANGE_END",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "PC",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "MISS_DISTANCE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"CDM_ID\": 2180,\n    \"CREATED\": \"1975-02-04T20:36:40.257Z\",\n    \"EMERGENCY_REPORTABLE\": \"string\",\n    \"TCA\": \"1979-04-25T13:12:02.490Z\",\n    \"MIN_RNG\": 4885.024591591864,\n    \"PC\": 469.58615641403355,\n    \"SAT_1_ID\": 9477,\n    \"SAT_1_NAME\": \"string\",\n    \"SAT_2_ID\": 5137,\n    \"SAT_2_NAME\": \"string\",\n    \"SAT_1_TYPE\": \"string\",\n    \"SAT_2_TYPE\": \"string\",\n    \"MISS_DISTANCE\": 3534.22698681618\n  },\n  {\n    \"CDM_ID\": 9535,\n    \"CREATED\": \"2022-02-24T18:39:08.394Z\",\n    \"EMERGENCY_REPORTABLE\": \"string\",\n    \"TCA\": \"1994-11-29T00:55:04.173Z\",\n    \"MIN_RNG\": 7738.751372766284,\n    \"PC\": 2134.2335696605464,\n    \"SAT_1_ID\": 4081,\n    \"SAT_1_NAME\": \"string\",\n    \"SAT_2_ID\": 6295,\n    \"SAT_2_NAME\": \"string\",\n    \"SAT_1_TYPE\": \"string\",\n    \"SAT_2_TYPE\": \"string\",\n    \"MISS_DISTANCE\": 9552.4802410836\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b49f1d1-a9a8-49cd-a607-a7ee427514b8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "cdm_public",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "SAT_1_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "SAT_2_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "TCA_RANGE_START",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "TCA_RANGE_END",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "PC",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "MISS_DISTANCE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ab1613fd-579c-49ba-a140-2d21c5b2e8ed",
+      "name": "Decay and Reentry",
+      "description": {
+        "content": "Satellite decay data and tracking impact predictions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "620566ca-901f-419f-af5d-28007b48b552",
+          "name": "List Satellite Decay Data",
+          "request": {
+            "name": "List Satellite Decay Data",
+            "description": {
+              "content": "Returns decay information for space objects that have reentered the atmosphere.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "basicspacedata",
+                "query",
+                "class",
+                "decay",
+                "format",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "NORAD_CAT_ID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "DECAY_EPOCH",
+                  "value": "<string>",
+                  "description": "Decay date filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "json",
+                  "key": "format",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "29a4e771-afd7-49dd-b91f-7a5a490b1504",
+              "name": "Decay data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "decay",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "NORAD_CAT_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DECAY_EPOCH",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"NORAD_CAT_ID\": 6855,\n    \"OBJECT_NAME\": \"string\",\n    \"INTLDES\": \"string\",\n    \"OBJECT_ID\": \"string\",\n    \"RCS\": \"string\",\n    \"RCS_SIZE\": \"string\",\n    \"COUNTRY\": \"string\",\n    \"MSG_EPOCH\": \"1964-12-29T07:52:42.559Z\",\n    \"DECAY_EPOCH\": \"1994-02-15\",\n    \"SOURCE\": \"string\",\n    \"MSG_TYPE\": \"string\",\n    \"PRECEDENCE\": 1844\n  },\n  {\n    \"NORAD_CAT_ID\": 8564,\n    \"OBJECT_NAME\": \"string\",\n    \"INTLDES\": \"string\",\n    \"OBJECT_ID\": \"string\",\n    \"RCS\": \"string\",\n    \"RCS_SIZE\": \"string\",\n    \"COUNTRY\": \"string\",\n    \"MSG_EPOCH\": \"1982-08-31T00:04:10.058Z\",\n    \"DECAY_EPOCH\": \"1956-01-31\",\n    \"SOURCE\": \"string\",\n    \"MSG_TYPE\": \"string\",\n    \"PRECEDENCE\": 7191\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6dcfbe7-d290-464d-b10a-fa15c802b028",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "decay",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "NORAD_CAT_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DECAY_EPOCH",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb3d0ab8-c4d0-4495-941a-1a0c18b8177c",
+          "name": "List Tracking and Impact Predictions (TIP)",
+          "request": {
+            "name": "List Tracking and Impact Predictions (TIP)",
+            "description": {
+              "content": "Returns Tracking and Impact Prediction (TIP) messages for objects expected to reenter the atmosphere.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "basicspacedata",
+                "query",
+                "class",
+                "tip",
+                "format",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "NORAD_CAT_ID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "CCSDS_OD_SPAN",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "json",
+                  "key": "format",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d30984e1-c192-499d-a4d3-c83d399e2076",
+              "name": "TIP messages",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "tip",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "NORAD_CAT_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "CCSDS_OD_SPAN",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9748b159-30f8-4135-a889-6019ac8e5a76",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "tip",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "NORAD_CAT_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "CCSDS_OD_SPAN",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "4e350e9c-c2e2-4255-8c59-fe864f1511cc",
+      "name": "Space Object History",
+      "description": {
+        "content": "Historical orbital ephemerides",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fa105878-849d-4f72-acb7-fdb54f6a3b3d",
+          "name": "List Historical General Perturbation Elements",
+          "request": {
+            "name": "List Historical General Perturbation Elements",
+            "description": {
+              "content": "Returns historical orbital element sets. Contains 138+ million records. Use with caution — apply filters to avoid large downloads.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "basicspacedata",
+                "query",
+                "class",
+                "gp_history",
+                "format",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "NORAD_CAT_ID",
+                  "value": "<string>",
+                  "description": "(Required) NORAD catalog number (required to prevent full table scans)"
+                },
+                {
+                  "disabled": false,
+                  "key": "EPOCH",
+                  "value": "<string>",
+                  "description": "Epoch date range filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "json",
+                  "key": "format",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "914b44dd-9589-470b-9fcb-5f1efe3a9b58",
+              "name": "Historical orbital element records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "gp_history",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "NORAD_CAT_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "EPOCH",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"CCSDS_OMM_VERS\": \"string\",\n    \"CLASSIFICATION_TYPE\": \"S\",\n    \"NORAD_CAT_ID\": 5159,\n    \"OBJECT_NAME\": \"string\",\n    \"OBJECT_ID\": \"string\",\n    \"OBJECT_TYPE\": \"TBA - TO BE ASSIGNED\",\n    \"EPOCH\": \"1977-01-08T11:04:59.024Z\",\n    \"MEAN_MOTION\": 2101.8535442096877,\n    \"ECCENTRICITY\": 4848.562380186429,\n    \"INCLINATION\": 9150.301865326885,\n    \"RA_OF_ASC_NODE\": 2154.2361686755185,\n    \"ARG_OF_PERICENTER\": 348.70825648596895,\n    \"MEAN_ANOMALY\": 2294.4993259629855,\n    \"EPHEMERIS_TYPE\": 5394,\n    \"ELEMENT_SET_NO\": 352,\n    \"REV_AT_EPOCH\": 2810,\n    \"BSTAR\": 2963.8676417089127,\n    \"APOGEE\": 6115.35924190989,\n    \"PERIGEE\": 7344.381040365258,\n    \"PERIOD\": 1733.389288284115,\n    \"COUNTRY_CODE\": \"string\"\n  },\n  {\n    \"CCSDS_OMM_VERS\": \"string\",\n    \"CLASSIFICATION_TYPE\": \"U\",\n    \"NORAD_CAT_ID\": 134,\n    \"OBJECT_NAME\": \"string\",\n    \"OBJECT_ID\": \"string\",\n    \"OBJECT_TYPE\": \"UNKNOWN\",\n    \"EPOCH\": \"2021-10-04T12:21:25.965Z\",\n    \"MEAN_MOTION\": 6561.713026306566,\n    \"ECCENTRICITY\": 8402.0169850907,\n    \"INCLINATION\": 1798.1802269736181,\n    \"RA_OF_ASC_NODE\": 6573.657823549349,\n    \"ARG_OF_PERICENTER\": 702.4285786719697,\n    \"MEAN_ANOMALY\": 5017.833011383135,\n    \"EPHEMERIS_TYPE\": 1133,\n    \"ELEMENT_SET_NO\": 5091,\n    \"REV_AT_EPOCH\": 8802,\n    \"BSTAR\": 9908.062980232899,\n    \"APOGEE\": 9345.39445336532,\n    \"PERIGEE\": 5287.784511199053,\n    \"PERIOD\": 5971.148825045893,\n    \"COUNTRY_CODE\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3cd4aff0-2b18-4202-94be-3d2fc20d5624",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "gp_history",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "NORAD_CAT_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "EPOCH",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.space-track.org",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "chocolatechip"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9f11c36c-09c0-4c2a-a428-f4ff9b502a7c",
+    "name": "Space-Track.org REST API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Space-Track.org is the official US Space Command (USSPACECOM) source for space situational awareness data. The REST API provides access to the satellite catalog (SATCAT), orbital element sets (GP/TLEs), conjunction data messages (CDMs), decay predictions (TIP), and space object history. Requires a free account. Authenticate via POST to /ajaxauth/login then use session cookies for subsequent requests.\n\nContact Support:\n Name: US Space Command / 18th Space Defense Squadron",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,444 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Space-Track.org REST API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "chocolatechip",
+      "value": "{{chocolatechip}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authenticate with Space-Track.org",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.space-track.org/ajaxauth/login",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "identity",
+                  "value": ""
+                },
+                {
+                  "name": "password",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Authenticate using username and password credentials. On success, a session cookie is returned for use in subsequent API requests."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "General Perturbations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Current General Perturbation Orbital Elements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.space-track.org/basicspacedata/query/class/gp/format/:format",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response format"
+              },
+              {
+                "name": "NORAD_CAT_ID",
+                "value": "",
+                "type": "query",
+                "description": "NORAD catalog number (e.g., 25544 for ISS)"
+              },
+              {
+                "name": "OBJECT_NAME",
+                "value": "",
+                "type": "query",
+                "description": "Object name (supports wildcard ~~)"
+              },
+              {
+                "name": "EPOCH",
+                "value": "",
+                "type": "query",
+                "description": "Epoch filter (e.g., >now-30 for last 30 days)"
+              },
+              {
+                "name": "DECAY_DATE",
+                "value": "",
+                "type": "query",
+                "description": "Filter for active (null-val) or decayed objects"
+              },
+              {
+                "name": "INCLINATION",
+                "value": "",
+                "type": "query",
+                "description": "Orbital inclination filter"
+              },
+              {
+                "name": "PERIOD",
+                "value": "",
+                "type": "query",
+                "description": "Orbital period filter (minutes)"
+              },
+              {
+                "name": "APOGEE",
+                "value": "",
+                "type": "query",
+                "description": "Apogee altitude filter (km)"
+              },
+              {
+                "name": "PERIGEE",
+                "value": "",
+                "type": "query",
+                "description": "Perigee altitude filter (km)"
+              },
+              {
+                "name": "COUNTRY_CODE",
+                "value": "",
+                "type": "query",
+                "description": "ISO country code of object owner"
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Sort field and direction (e.g., NORAD_CAT_ID asc)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of results"
+              }
+            ]
+          },
+          "docs": "Returns the latest orbital element sets (GP/TLEs) for tracked objects. The GP class provides the newest element set per object."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Satellite Catalog",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query Satellite Catalog (SATCAT)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.space-track.org/basicspacedata/query/class/satcat/format/:format",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "NORAD_CAT_ID",
+                "value": "",
+                "type": "query",
+                "description": "NORAD catalog number"
+              },
+              {
+                "name": "INTLDES",
+                "value": "",
+                "type": "query",
+                "description": "International designator (e.g., 1998-067A for ISS)"
+              },
+              {
+                "name": "OBJECT_NAME",
+                "value": "",
+                "type": "query",
+                "description": "Object name (supports wildcard ~~)"
+              },
+              {
+                "name": "OBJECT_TYPE",
+                "value": "",
+                "type": "query",
+                "description": "Type filter (PAYLOAD, ROCKET BODY, DEBRIS, UNKNOWN)"
+              },
+              {
+                "name": "COUNTRY_CODE",
+                "value": "",
+                "type": "query",
+                "description": "Country code filter"
+              },
+              {
+                "name": "LAUNCH_DATE",
+                "value": "",
+                "type": "query",
+                "description": "Launch date filter"
+              },
+              {
+                "name": "DECAY_DATE",
+                "value": "",
+                "type": "query",
+                "description": "Decay date (use null-val for active objects)"
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns satellite catalog information including object metadata, launch dates, countries of origin, and object classification."
+        },
+        {
+          "info": {
+            "name": "Get Space Object Counts by Country (Boxscore)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.space-track.org/basicspacedata/query/class/boxscore/format/:format",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a count of tracked space objects by country and object type."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Conjunction Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Conjunction Data Messages (CDM)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.space-track.org/basicspacedata/query/class/cdm_public/format/:format",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "SAT_1_ID",
+                "value": "",
+                "type": "query",
+                "description": "NORAD ID of primary object"
+              },
+              {
+                "name": "SAT_2_ID",
+                "value": "",
+                "type": "query",
+                "description": "NORAD ID of secondary object"
+              },
+              {
+                "name": "TCA_RANGE_START",
+                "value": "",
+                "type": "query",
+                "description": "Time of closest approach start filter (ISO 8601)"
+              },
+              {
+                "name": "TCA_RANGE_END",
+                "value": "",
+                "type": "query",
+                "description": "Time of closest approach end filter (ISO 8601)"
+              },
+              {
+                "name": "PC",
+                "value": "",
+                "type": "query",
+                "description": "Probability of collision filter (e.g., >0.0001)"
+              },
+              {
+                "name": "MISS_DISTANCE",
+                "value": "",
+                "type": "query",
+                "description": "Miss distance filter (km)"
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns publicly available Conjunction Data Messages (CDMs), which are notifications of potential close approaches between tracked objects. Sorted by collision probability descending."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Decay and Reentry",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Satellite Decay Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.space-track.org/basicspacedata/query/class/decay/format/:format",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "NORAD_CAT_ID",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DECAY_EPOCH",
+                "value": "",
+                "type": "query",
+                "description": "Decay date filter"
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns decay information for space objects that have reentered the atmosphere."
+        },
+        {
+          "info": {
+            "name": "List Tracking and Impact Predictions (TIP)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.space-track.org/basicspacedata/query/class/tip/format/:format",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "NORAD_CAT_ID",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "CCSDS_OD_SPAN",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns Tracking and Impact Prediction (TIP) messages for objects expected to reenter the atmosphere."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Space Object History",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Historical General Perturbation Elements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.space-track.org/basicspacedata/query/class/gp_history/format/:format",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "NORAD_CAT_ID",
+                "value": "",
+                "type": "query",
+                "description": "NORAD catalog number (required to prevent full table scans)"
+              },
+              {
+                "name": "EPOCH",
+                "value": "",
+                "type": "query",
+                "description": "Epoch date range filter"
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns historical orbital element sets. Contains 138+ million records. Use with caution — apply filters to avoid large downloads."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
