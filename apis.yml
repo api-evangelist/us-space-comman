@@ -1,6 +1,10 @@
 aid: us-space-comman
 url: https://raw.githubusercontent.com/api-evangelist/us-space-comman/refs/heads/main/apis.yml
 common:
+  - type: DomainSecurity
+    url: security/us-space-comman-domain-security.yml
+  - type: Authentication
+    url: authentication/us-space-comman-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/usspacecom
 apis:

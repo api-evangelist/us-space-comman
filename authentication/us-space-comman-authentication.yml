@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/us-space-command-space-track-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - cookie
+schemes:
+- name: sessionCookie
+  type: apiKey
+  in: cookie
+  parameter: chocolatechip
+  description: Session cookie obtained after successful login via POST /ajaxauth/login
+  sources:
+  - openapi/us-space-command-space-track-openapi.yml
