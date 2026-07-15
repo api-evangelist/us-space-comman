@@ -1,6 +1,8 @@
 aid: us-space-comman
 url: https://raw.githubusercontent.com/api-evangelist/us-space-comman/refs/heads/main/apis.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/us-space-comman-agentic-access.yml
   - type: DomainSecurity
     url: security/us-space-comman-domain-security.yml
   - type: Authentication
