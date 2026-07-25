@@ -1,0 +1,149 @@
+openapi: 3.0.1
+info:
+  title: Space-Track.org REST Authentication Space Object History API
+  description: Space-Track.org is the official US Space Command (USSPACECOM) source for space situational awareness data. The REST API provides access to the satellite catalog (SATCAT), orbital element sets (GP/TLEs), conjunction data messages (CDMs), decay predictions (TIP), and space object history. Requires a free account. Authenticate via POST to /ajaxauth/login then use session cookies for subsequent requests.
+  version: '1.0'
+  contact:
+    name: US Space Command / 18th Space Defense Squadron
+    url: https://www.space-track.org
+servers:
+- url: https://www.space-track.org
+security:
+- sessionCookie: []
+tags:
+- name: Space Object History
+  description: Historical orbital ephemerides
+paths:
+  /basicspacedata/query/class/gp_history/format/{format}:
+    get:
+      tags:
+      - Space Object History
+      operationId: listGPHistory
+      summary: List Historical General Perturbation Elements
+      description: Returns historical orbital element sets. Contains 138+ million records. Use with caution — apply filters to avoid large downloads.
+      parameters:
+      - name: format
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          - csv
+          - tle
+          - 3le
+          - kvn
+          default: json
+      - name: NORAD_CAT_ID
+        in: query
+        required: true
+        description: NORAD catalog number (required to prevent full table scans)
+        schema:
+          type: string
+      - name: EPOCH
+        in: query
+        description: Epoch date range filter
+        schema:
+          type: string
+      - name: orderby
+        in: query
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Historical orbital element records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GeneralPerturbations'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    GeneralPerturbations:
+      type: object
+      description: Orbital element set for a tracked space object
+      properties:
+        CCSDS_OMM_VERS:
+          type: string
+        CLASSIFICATION_TYPE:
+          type: string
+          enum:
+          - U
+          - S
+          - C
+          description: Classification type (U=Unclassified)
+        NORAD_CAT_ID:
+          type: integer
+          description: NORAD catalog number
+        OBJECT_NAME:
+          type: string
+          description: Object name
+        OBJECT_ID:
+          type: string
+          description: International designator (YYYY-NNNPPP)
+        OBJECT_TYPE:
+          type: string
+          enum:
+          - PAYLOAD
+          - ROCKET BODY
+          - DEBRIS
+          - UNKNOWN
+          - TBA - TO BE ASSIGNED
+        EPOCH:
+          type: string
+          format: date-time
+          description: Epoch of the orbital elements
+        MEAN_MOTION:
+          type: number
+          description: Revolutions per day
+        ECCENTRICITY:
+          type: number
+          description: Orbital eccentricity
+        INCLINATION:
+          type: number
+          description: Orbital inclination (degrees)
+        RA_OF_ASC_NODE:
+          type: number
+          description: Right ascension of ascending node (degrees)
+        ARG_OF_PERICENTER:
+          type: number
+          description: Argument of perigee (degrees)
+        MEAN_ANOMALY:
+          type: number
+          description: Mean anomaly (degrees)
+        EPHEMERIS_TYPE:
+          type: integer
+        ELEMENT_SET_NO:
+          type: integer
+        REV_AT_EPOCH:
+          type: integer
+          description: Revolution number at epoch
+        BSTAR:
+          type: number
+          description: BSTAR drag term
+        APOGEE:
+          type: number
+          description: Apogee altitude (km)
+        PERIGEE:
+          type: number
+          description: Perigee altitude (km)
+        PERIOD:
+          type: number
+          description: Orbital period (minutes)
+        COUNTRY_CODE:
+          type: string
+          description: Owning country code
+  securitySchemes:
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: chocolatechip
+      description: Session cookie obtained after successful login via POST /ajaxauth/login

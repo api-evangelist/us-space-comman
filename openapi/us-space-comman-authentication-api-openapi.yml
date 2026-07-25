@@ -1,0 +1,52 @@
+openapi: 3.0.1
+info:
+  title: Space-Track.org REST Authentication API
+  description: Space-Track.org is the official US Space Command (USSPACECOM) source for space situational awareness data. The REST API provides access to the satellite catalog (SATCAT), orbital element sets (GP/TLEs), conjunction data messages (CDMs), decay predictions (TIP), and space object history. Requires a free account. Authenticate via POST to /ajaxauth/login then use session cookies for subsequent requests.
+  version: '1.0'
+  contact:
+    name: US Space Command / 18th Space Defense Squadron
+    url: https://www.space-track.org
+servers:
+- url: https://www.space-track.org
+security:
+- sessionCookie: []
+tags:
+- name: Authentication
+  description: Session-based authentication
+paths:
+  /ajaxauth/login:
+    post:
+      tags:
+      - Authentication
+      operationId: login
+      summary: Authenticate with Space-Track.org
+      description: Authenticate using username and password credentials. On success, a session cookie is returned for use in subsequent API requests.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - identity
+              - password
+              properties:
+                identity:
+                  type: string
+                  description: Space-Track.org username (email address)
+                password:
+                  type: string
+                  format: password
+                  description: Space-Track.org password
+      responses:
+        '200':
+          description: Authentication successful — session cookie returned
+        '401':
+          description: Invalid credentials
+components:
+  securitySchemes:
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: chocolatechip
+      description: Session cookie obtained after successful login via POST /ajaxauth/login

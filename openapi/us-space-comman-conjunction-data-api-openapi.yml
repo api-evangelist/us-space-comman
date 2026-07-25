@@ -1,0 +1,129 @@
+openapi: 3.0.1
+info:
+  title: Space-Track.org REST Authentication Conjunction Data API
+  description: Space-Track.org is the official US Space Command (USSPACECOM) source for space situational awareness data. The REST API provides access to the satellite catalog (SATCAT), orbital element sets (GP/TLEs), conjunction data messages (CDMs), decay predictions (TIP), and space object history. Requires a free account. Authenticate via POST to /ajaxauth/login then use session cookies for subsequent requests.
+  version: '1.0'
+  contact:
+    name: US Space Command / 18th Space Defense Squadron
+    url: https://www.space-track.org
+servers:
+- url: https://www.space-track.org
+security:
+- sessionCookie: []
+tags:
+- name: Conjunction Data
+  description: Conjunction data messages (collision warnings)
+paths:
+  /basicspacedata/query/class/cdm_public/format/{format}:
+    get:
+      tags:
+      - Conjunction Data
+      operationId: listConjunctionData
+      summary: List Conjunction Data Messages (CDM)
+      description: Returns publicly available Conjunction Data Messages (CDMs), which are notifications of potential close approaches between tracked objects. Sorted by collision probability descending.
+      parameters:
+      - name: format
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          - csv
+          default: json
+      - name: SAT_1_ID
+        in: query
+        description: NORAD ID of primary object
+        schema:
+          type: string
+      - name: SAT_2_ID
+        in: query
+        description: NORAD ID of secondary object
+        schema:
+          type: string
+      - name: TCA_RANGE_START
+        in: query
+        description: Time of closest approach start filter (ISO 8601)
+        schema:
+          type: string
+      - name: TCA_RANGE_END
+        in: query
+        description: Time of closest approach end filter (ISO 8601)
+        schema:
+          type: string
+      - name: PC
+        in: query
+        description: Probability of collision filter (e.g., >0.0001)
+        schema:
+          type: string
+      - name: MISS_DISTANCE
+        in: query
+        description: Miss distance filter (km)
+        schema:
+          type: string
+      - name: orderby
+        in: query
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Conjunction data messages
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConjunctionDataMessage'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    ConjunctionDataMessage:
+      type: object
+      description: Conjunction Data Message indicating potential close approach
+      properties:
+        CDM_ID:
+          type: integer
+        CREATED:
+          type: string
+          format: date-time
+        EMERGENCY_REPORTABLE:
+          type: string
+        TCA:
+          type: string
+          format: date-time
+          description: Time of closest approach
+        MIN_RNG:
+          type: number
+          description: Minimum range (km)
+        PC:
+          type: number
+          description: Probability of collision
+        SAT_1_ID:
+          type: integer
+          description: NORAD ID of primary object
+        SAT_1_NAME:
+          type: string
+        SAT_2_ID:
+          type: integer
+          description: NORAD ID of secondary object
+        SAT_2_NAME:
+          type: string
+        SAT_1_TYPE:
+          type: string
+        SAT_2_TYPE:
+          type: string
+        MISS_DISTANCE:
+          type: number
+          description: Miss distance (km)
+  securitySchemes:
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: chocolatechip
+      description: Session cookie obtained after successful login via POST /ajaxauth/login

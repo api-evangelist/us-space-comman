@@ -1,0 +1,145 @@
+openapi: 3.0.1
+info:
+  title: Space-Track.org REST Authentication Decay and Reentry API
+  description: Space-Track.org is the official US Space Command (USSPACECOM) source for space situational awareness data. The REST API provides access to the satellite catalog (SATCAT), orbital element sets (GP/TLEs), conjunction data messages (CDMs), decay predictions (TIP), and space object history. Requires a free account. Authenticate via POST to /ajaxauth/login then use session cookies for subsequent requests.
+  version: '1.0'
+  contact:
+    name: US Space Command / 18th Space Defense Squadron
+    url: https://www.space-track.org
+servers:
+- url: https://www.space-track.org
+security:
+- sessionCookie: []
+tags:
+- name: Decay and Reentry
+  description: Satellite decay data and tracking impact predictions
+paths:
+  /basicspacedata/query/class/decay/format/{format}:
+    get:
+      tags:
+      - Decay and Reentry
+      operationId: listDecayData
+      summary: List Satellite Decay Data
+      description: Returns decay information for space objects that have reentered the atmosphere.
+      parameters:
+      - name: format
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          - csv
+          default: json
+      - name: NORAD_CAT_ID
+        in: query
+        schema:
+          type: string
+      - name: DECAY_EPOCH
+        in: query
+        description: Decay date filter
+        schema:
+          type: string
+      - name: orderby
+        in: query
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Decay data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DecayData'
+        '401':
+          description: Unauthorized
+  /basicspacedata/query/class/tip/format/{format}:
+    get:
+      tags:
+      - Decay and Reentry
+      operationId: listTrackingImpactPredictions
+      summary: List Tracking and Impact Predictions (TIP)
+      description: Returns Tracking and Impact Prediction (TIP) messages for objects expected to reenter the atmosphere.
+      parameters:
+      - name: format
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          - csv
+          default: json
+      - name: NORAD_CAT_ID
+        in: query
+        schema:
+          type: string
+      - name: CCSDS_OD_SPAN
+        in: query
+        schema:
+          type: string
+      - name: orderby
+        in: query
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: TIP messages
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    DecayData:
+      type: object
+      description: Decay information for a space object
+      properties:
+        NORAD_CAT_ID:
+          type: integer
+        OBJECT_NAME:
+          type: string
+        INTLDES:
+          type: string
+        OBJECT_ID:
+          type: string
+        RCS:
+          type: string
+        RCS_SIZE:
+          type: string
+        COUNTRY:
+          type: string
+        MSG_EPOCH:
+          type: string
+          format: date-time
+        DECAY_EPOCH:
+          type: string
+          format: date
+        SOURCE:
+          type: string
+        MSG_TYPE:
+          type: string
+        PRECEDENCE:
+          type: integer
+  securitySchemes:
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: chocolatechip
+      description: Session cookie obtained after successful login via POST /ajaxauth/login
