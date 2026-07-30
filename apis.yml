@@ -10,28 +10,84 @@ common:
   - type: LinkedIn
     url: https://www.linkedin.com/company/usspacecom
 apis:
-  - aid: us-space-comman:space-track-api
-    name: Space-Track.org REST API
-    tags:
-      - Space Situational Awareness
-      - Orbital Data
-      - Satellite Tracking
-      - Federal Government
-      - Open Data
-    humanURL: https://www.space-track.org/documentation
-    properties:
-      - url: https://www.space-track.org/documentation
-        type: Documentation
-      - url: https://www.space-track.org
-        type: Portal
-      - url: >-
-          https://raw.githubusercontent.com/api-evangelist/us-space-comman/refs/heads/main/openapi/us-space-command-space-track-openapi.yml
-        type: OpenAPI
-    description: >-
-      Space-Track.org is the official public source for US Space Command's satellite catalog and space situational
-      awareness data, maintained by the 18th Space Defense Squadron. The REST API provides access to orbital element
-      sets (GP/TLEs), the satellite catalog (SATCAT), conjunction data messages (CDMs), decay predictions (TIP), and
-      space object history. Requires a free Space-Track.org account for authentication.
+- aid: us-space-comman:us-space-comman-authentication-api
+  name: US Space Command Authentication API
+  description: Session-based authentication
+  humanURL: https://www.space-track.org/documentation
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/us-space-comman-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://www.space-track.org/documentation
+  - type: Portal
+    url: https://www.space-track.org
+- aid: us-space-comman:us-space-comman-conjunction-data-api
+  name: US Space Command Conjunction Data API
+  description: Conjunction data messages (collision warnings)
+  humanURL: https://www.space-track.org/documentation
+  tags:
+  - Conjunction Data
+  properties:
+  - type: OpenAPI
+    url: openapi/us-space-comman-conjunction-data-api-openapi.yml
+  - type: Documentation
+    url: https://www.space-track.org/documentation
+  - type: Portal
+    url: https://www.space-track.org
+- aid: us-space-comman:us-space-comman-decay-and-reentry-api
+  name: US Space Command Decay and Reentry API
+  description: Satellite decay data and tracking impact predictions
+  humanURL: https://www.space-track.org/documentation
+  tags:
+  - Decay and Reentry
+  properties:
+  - type: OpenAPI
+    url: openapi/us-space-comman-decay-and-reentry-api-openapi.yml
+  - type: Documentation
+    url: https://www.space-track.org/documentation
+  - type: Portal
+    url: https://www.space-track.org
+- aid: us-space-comman:us-space-comman-general-perturbations-api
+  name: US Space Command General Perturbations API
+  description: Current orbital element sets for tracked space objects
+  humanURL: https://www.space-track.org/documentation
+  tags:
+  - General Perturbations
+  properties:
+  - type: OpenAPI
+    url: openapi/us-space-comman-general-perturbations-api-openapi.yml
+  - type: Documentation
+    url: https://www.space-track.org/documentation
+  - type: Portal
+    url: https://www.space-track.org
+- aid: us-space-comman:us-space-comman-satellite-catalog-api
+  name: US Space Command Satellite Catalog API
+  description: Satellite catalog metadata
+  humanURL: https://www.space-track.org/documentation
+  tags:
+  - Satellite Catalog
+  properties:
+  - type: OpenAPI
+    url: openapi/us-space-comman-satellite-catalog-api-openapi.yml
+  - type: Documentation
+    url: https://www.space-track.org/documentation
+  - type: Portal
+    url: https://www.space-track.org
+- aid: us-space-comman:us-space-comman-space-object-history-api
+  name: US Space Command Space Object History API
+  description: Historical orbital ephemerides
+  humanURL: https://www.space-track.org/documentation
+  tags:
+  - Space Object History
+  properties:
+  - type: OpenAPI
+    url: openapi/us-space-comman-space-object-history-api-openapi.yml
+  - type: Documentation
+    url: https://www.space-track.org/documentation
+  - type: Portal
+    url: https://www.space-track.org
 name: US Space Command
 tags:
   - Federal Government
@@ -40,7 +96,20 @@ tags:
   - Satellite Tracking
   - Open Data
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/us-space-comman.png
 access: 3rd-Party
 created: '2024-12-03'
 modified: '2026-05-19'
