@@ -1,0 +1,24 @@
+{
+  "provider": "us-space-comman",
+  "sources": [
+    "us-space-comman-authentication-api-openapi.yml",
+    "us-space-comman-conjunction-data-api-openapi.yml",
+    "us-space-comman-decay-and-reentry-api-openapi.yml",
+    "us-space-comman-general-perturbations-api-openapi.yml",
+    "us-space-comman-satellite-catalog-api-openapi.yml",
+    "us-space-comman-space-object-history-api-openapi.yml"
+  ],
+  "outputs": [
+    "us-space-comman-authentication-api-openapi.yml",
+    "us-space-comman-conjunction-data-api-openapi.yml",
+    "us-space-comman-decay-and-reentry-api-openapi.yml",
+    "us-space-comman-general-perturbations-api-openapi.yml",
+    "us-space-comman-satellite-catalog-api-openapi.yml",
+    "us-space-comman-space-object-history-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

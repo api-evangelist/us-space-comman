@@ -1,0 +1,623 @@
+openapi: 3.0.1
+info:
+  title: Space-Track.org REST API
+  description: >-
+    Space-Track.org is the official US Space Command (USSPACECOM) source for
+    space situational awareness data. The REST API provides access to the
+    satellite catalog (SATCAT), orbital element sets (GP/TLEs), conjunction
+    data messages (CDMs), decay predictions (TIP), and space object history.
+    Requires a free account. Authenticate via POST to /ajaxauth/login then
+    use session cookies for subsequent requests.
+  version: "1.0"
+  contact:
+    name: US Space Command / 18th Space Defense Squadron
+    url: https://www.space-track.org
+servers:
+  - url: https://www.space-track.org
+security:
+  - sessionCookie: []
+tags:
+  - name: Authentication
+    description: Session-based authentication
+  - name: General Perturbations
+    description: Current orbital element sets for tracked space objects
+  - name: Satellite Catalog
+    description: Satellite catalog metadata
+  - name: Conjunction Data
+    description: Conjunction data messages (collision warnings)
+  - name: Decay and Reentry
+    description: Satellite decay data and tracking impact predictions
+  - name: Space Object History
+    description: Historical orbital ephemerides
+paths:
+  /ajaxauth/login:
+    post:
+      tags:
+        - Authentication
+      operationId: login
+      summary: Authenticate with Space-Track.org
+      description: >-
+        Authenticate using username and password credentials. On success,
+        a session cookie is returned for use in subsequent API requests.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - identity
+                - password
+              properties:
+                identity:
+                  type: string
+                  description: Space-Track.org username (email address)
+                password:
+                  type: string
+                  format: password
+                  description: Space-Track.org password
+      responses:
+        '200':
+          description: Authentication successful — session cookie returned
+        '401':
+          description: Invalid credentials
+  /basicspacedata/query/class/gp/format/{format}:
+    get:
+      tags:
+        - General Perturbations
+      operationId: listCurrentGP
+      summary: List Current General Perturbation Orbital Elements
+      description: >-
+        Returns the latest orbital element sets (GP/TLEs) for tracked objects.
+        The GP class provides the newest element set per object.
+      parameters:
+        - name: format
+          in: path
+          required: true
+          description: Response format
+          schema:
+            type: string
+            enum: [json, xml, csv, tle, 3le, kvn]
+            default: json
+        - name: NORAD_CAT_ID
+          in: query
+          description: NORAD catalog number (e.g., 25544 for ISS)
+          schema:
+            type: string
+        - name: OBJECT_NAME
+          in: query
+          description: Object name (supports wildcard ~~)
+          schema:
+            type: string
+        - name: EPOCH
+          in: query
+          description: Epoch filter (e.g., >now-30 for last 30 days)
+          schema:
+            type: string
+        - name: DECAY_DATE
+          in: query
+          description: Filter for active (null-val) or decayed objects
+          schema:
+            type: string
+        - name: INCLINATION
+          in: query
+          description: Orbital inclination filter
+          schema:
+            type: string
+        - name: PERIOD
+          in: query
+          description: Orbital period filter (minutes)
+          schema:
+            type: string
+        - name: APOGEE
+          in: query
+          description: Apogee altitude filter (km)
+          schema:
+            type: string
+        - name: PERIGEE
+          in: query
+          description: Perigee altitude filter (km)
+          schema:
+            type: string
+        - name: COUNTRY_CODE
+          in: query
+          description: ISO country code of object owner
+          schema:
+            type: string
+        - name: orderby
+          in: query
+          description: Sort field and direction (e.g., NORAD_CAT_ID asc)
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Max number of results
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Orbital element sets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GeneralPerturbations'
+        '401':
+          description: Unauthorized - authentication required
+  /basicspacedata/query/class/satcat/format/{format}:
+    get:
+      tags:
+        - Satellite Catalog
+      operationId: listSatCat
+      summary: Query Satellite Catalog (SATCAT)
+      description: >-
+        Returns satellite catalog information including object metadata,
+        launch dates, countries of origin, and object classification.
+      parameters:
+        - name: format
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [json, xml, csv]
+            default: json
+        - name: NORAD_CAT_ID
+          in: query
+          description: NORAD catalog number
+          schema:
+            type: string
+        - name: INTLDES
+          in: query
+          description: International designator (e.g., 1998-067A for ISS)
+          schema:
+            type: string
+        - name: OBJECT_NAME
+          in: query
+          description: Object name (supports wildcard ~~)
+          schema:
+            type: string
+        - name: OBJECT_TYPE
+          in: query
+          description: Type filter (PAYLOAD, ROCKET BODY, DEBRIS, UNKNOWN)
+          schema:
+            type: string
+            enum: [PAYLOAD, "ROCKET BODY", DEBRIS, UNKNOWN]
+        - name: COUNTRY_CODE
+          in: query
+          description: Country code filter
+          schema:
+            type: string
+        - name: LAUNCH_DATE
+          in: query
+          description: Launch date filter
+          schema:
+            type: string
+        - name: DECAY_DATE
+          in: query
+          description: Decay date (use null-val for active objects)
+          schema:
+            type: string
+        - name: orderby
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Satellite catalog entries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SatCatEntry'
+        '401':
+          description: Unauthorized
+  /basicspacedata/query/class/cdm_public/format/{format}:
+    get:
+      tags:
+        - Conjunction Data
+      operationId: listConjunctionData
+      summary: List Conjunction Data Messages (CDM)
+      description: >-
+        Returns publicly available Conjunction Data Messages (CDMs), which are
+        notifications of potential close approaches between tracked objects.
+        Sorted by collision probability descending.
+      parameters:
+        - name: format
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [json, xml, csv]
+            default: json
+        - name: SAT_1_ID
+          in: query
+          description: NORAD ID of primary object
+          schema:
+            type: string
+        - name: SAT_2_ID
+          in: query
+          description: NORAD ID of secondary object
+          schema:
+            type: string
+        - name: TCA_RANGE_START
+          in: query
+          description: Time of closest approach start filter (ISO 8601)
+          schema:
+            type: string
+        - name: TCA_RANGE_END
+          in: query
+          description: Time of closest approach end filter (ISO 8601)
+          schema:
+            type: string
+        - name: PC
+          in: query
+          description: Probability of collision filter (e.g., >0.0001)
+          schema:
+            type: string
+        - name: MISS_DISTANCE
+          in: query
+          description: Miss distance filter (km)
+          schema:
+            type: string
+        - name: orderby
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Conjunction data messages
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConjunctionDataMessage'
+        '401':
+          description: Unauthorized
+  /basicspacedata/query/class/decay/format/{format}:
+    get:
+      tags:
+        - Decay and Reentry
+      operationId: listDecayData
+      summary: List Satellite Decay Data
+      description: Returns decay information for space objects that have reentered the atmosphere.
+      parameters:
+        - name: format
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [json, xml, csv]
+            default: json
+        - name: NORAD_CAT_ID
+          in: query
+          schema:
+            type: string
+        - name: DECAY_EPOCH
+          in: query
+          description: Decay date filter
+          schema:
+            type: string
+        - name: orderby
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Decay data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DecayData'
+        '401':
+          description: Unauthorized
+  /basicspacedata/query/class/tip/format/{format}:
+    get:
+      tags:
+        - Decay and Reentry
+      operationId: listTrackingImpactPredictions
+      summary: List Tracking and Impact Predictions (TIP)
+      description: >-
+        Returns Tracking and Impact Prediction (TIP) messages for objects
+        expected to reenter the atmosphere.
+      parameters:
+        - name: format
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [json, xml, csv]
+            default: json
+        - name: NORAD_CAT_ID
+          in: query
+          schema:
+            type: string
+        - name: CCSDS_OD_SPAN
+          in: query
+          schema:
+            type: string
+        - name: orderby
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: TIP messages
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '401':
+          description: Unauthorized
+  /basicspacedata/query/class/gp_history/format/{format}:
+    get:
+      tags:
+        - Space Object History
+      operationId: listGPHistory
+      summary: List Historical General Perturbation Elements
+      description: >-
+        Returns historical orbital element sets. Contains 138+ million records.
+        Use with caution — apply filters to avoid large downloads.
+      parameters:
+        - name: format
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [json, xml, csv, tle, 3le, kvn]
+            default: json
+        - name: NORAD_CAT_ID
+          in: query
+          required: true
+          description: NORAD catalog number (required to prevent full table scans)
+          schema:
+            type: string
+        - name: EPOCH
+          in: query
+          description: Epoch date range filter
+          schema:
+            type: string
+        - name: orderby
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Historical orbital element records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GeneralPerturbations'
+        '401':
+          description: Unauthorized
+  /basicspacedata/query/class/boxscore/format/{format}:
+    get:
+      tags:
+        - Satellite Catalog
+      operationId: getBoxscore
+      summary: Get Space Object Counts by Country (Boxscore)
+      description: Returns a count of tracked space objects by country and object type.
+      parameters:
+        - name: format
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [json, xml, csv]
+            default: json
+      responses:
+        '200':
+          description: Object counts by country
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '401':
+          description: Unauthorized
+components:
+  securitySchemes:
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: chocolatechip
+      description: "Session cookie obtained after successful login via POST /ajaxauth/login"
+  schemas:
+    GeneralPerturbations:
+      type: object
+      description: Orbital element set for a tracked space object
+      properties:
+        CCSDS_OMM_VERS:
+          type: string
+        CLASSIFICATION_TYPE:
+          type: string
+          enum: [U, S, C]
+          description: Classification type (U=Unclassified)
+        NORAD_CAT_ID:
+          type: integer
+          description: NORAD catalog number
+        OBJECT_NAME:
+          type: string
+          description: Object name
+        OBJECT_ID:
+          type: string
+          description: International designator (YYYY-NNNPPP)
+        OBJECT_TYPE:
+          type: string
+          enum: [PAYLOAD, "ROCKET BODY", DEBRIS, UNKNOWN, "TBA - TO BE ASSIGNED"]
+        EPOCH:
+          type: string
+          format: date-time
+          description: Epoch of the orbital elements
+        MEAN_MOTION:
+          type: number
+          description: Revolutions per day
+        ECCENTRICITY:
+          type: number
+          description: Orbital eccentricity
+        INCLINATION:
+          type: number
+          description: Orbital inclination (degrees)
+        RA_OF_ASC_NODE:
+          type: number
+          description: Right ascension of ascending node (degrees)
+        ARG_OF_PERICENTER:
+          type: number
+          description: Argument of perigee (degrees)
+        MEAN_ANOMALY:
+          type: number
+          description: Mean anomaly (degrees)
+        EPHEMERIS_TYPE:
+          type: integer
+        ELEMENT_SET_NO:
+          type: integer
+        REV_AT_EPOCH:
+          type: integer
+          description: Revolution number at epoch
+        BSTAR:
+          type: number
+          description: BSTAR drag term
+        APOGEE:
+          type: number
+          description: Apogee altitude (km)
+        PERIGEE:
+          type: number
+          description: Perigee altitude (km)
+        PERIOD:
+          type: number
+          description: Orbital period (minutes)
+        COUNTRY_CODE:
+          type: string
+          description: Owning country code
+    SatCatEntry:
+      type: object
+      description: Satellite catalog entry
+      properties:
+        NORAD_CAT_ID:
+          type: integer
+        INTLDES:
+          type: string
+          description: International designator (e.g., 1998-067A)
+        OBJECT_NAME:
+          type: string
+        OBJECT_TYPE:
+          type: string
+          enum: [PAYLOAD, "ROCKET BODY", DEBRIS, UNKNOWN]
+        COUNTRY_CODE:
+          type: string
+          description: ISO 3-letter country code
+        LAUNCH_DATE:
+          type: string
+          format: date
+        SITE:
+          type: string
+          description: Launch site
+        DECAY_DATE:
+          type: string
+          format: date
+          nullable: true
+        RCSVALUE:
+          type: integer
+          description: Radar cross section value (1=Small, 2=Medium, 3=Large)
+        COMMENT:
+          type: string
+          nullable: true
+        CCSDS_OMM_VERS:
+          type: string
+    ConjunctionDataMessage:
+      type: object
+      description: Conjunction Data Message indicating potential close approach
+      properties:
+        CDM_ID:
+          type: integer
+        CREATED:
+          type: string
+          format: date-time
+        EMERGENCY_REPORTABLE:
+          type: string
+        TCA:
+          type: string
+          format: date-time
+          description: Time of closest approach
+        MIN_RNG:
+          type: number
+          description: Minimum range (km)
+        PC:
+          type: number
+          description: Probability of collision
+        SAT_1_ID:
+          type: integer
+          description: NORAD ID of primary object
+        SAT_1_NAME:
+          type: string
+        SAT_2_ID:
+          type: integer
+          description: NORAD ID of secondary object
+        SAT_2_NAME:
+          type: string
+        SAT_1_TYPE:
+          type: string
+        SAT_2_TYPE:
+          type: string
+        MISS_DISTANCE:
+          type: number
+          description: Miss distance (km)
+    DecayData:
+      type: object
+      description: Decay information for a space object
+      properties:
+        NORAD_CAT_ID:
+          type: integer
+        OBJECT_NAME:
+          type: string
+        INTLDES:
+          type: string
+        OBJECT_ID:
+          type: string
+        RCS:
+          type: string
+        RCS_SIZE:
+          type: string
+        COUNTRY:
+          type: string
+        MSG_EPOCH:
+          type: string
+          format: date-time
+        DECAY_EPOCH:
+          type: string
+          format: date
+        SOURCE:
+          type: string
+        MSG_TYPE:
+          type: string
+        PRECEDENCE:
+          type: integer
