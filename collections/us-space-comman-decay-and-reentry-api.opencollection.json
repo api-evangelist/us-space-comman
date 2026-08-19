@@ -1,0 +1,103 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Space-Track.org REST Authentication Decay and Reentry API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "chocolatechip",
+      "value": "{{chocolatechip}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Decay and Reentry",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Satellite Decay Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.space-track.org/basicspacedata/query/class/decay/format/:format",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "NORAD_CAT_ID",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "DECAY_EPOCH",
+                "value": "",
+                "type": "query",
+                "description": "Decay date filter"
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns decay information for space objects that have reentered the atmosphere."
+        },
+        {
+          "info": {
+            "name": "List Tracking and Impact Predictions (TIP)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.space-track.org/basicspacedata/query/class/tip/format/:format",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "NORAD_CAT_ID",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "CCSDS_OD_SPAN",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns Tracking and Impact Prediction (TIP) messages for objects expected to reenter the atmosphere."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

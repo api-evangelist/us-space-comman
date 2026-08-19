@@ -1,0 +1,226 @@
+{
+  "item": [
+    {
+      "id": "bab04748-7987-43d7-b770-356067129db8",
+      "name": "Authentication",
+      "description": {
+        "content": "Session-based authentication",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2d57e80b-a8d9-431b-b2d4-be24e62119a5",
+          "name": "Authenticate with Space-Track.org",
+          "request": {
+            "name": "Authenticate with Space-Track.org",
+            "description": {
+              "content": "Authenticate using username and password credentials. On success, a session cookie is returned for use in subsequent API requests.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ajaxauth",
+                "login"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "identity",
+                  "value": "<string>",
+                  "description": "(Required) Space-Track.org username (email address)"
+                },
+                {
+                  "disabled": false,
+                  "key": "password",
+                  "value": "<password>",
+                  "description": "(Required) Space-Track.org password"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bc46fbcd-6a8d-4b43-815d-0eafd9cebf2b",
+              "name": "Authentication successful — session cookie returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ajaxauth",
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Space-Track.org username (email address)",
+                        "type": "text/plain"
+                      },
+                      "key": "identity",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Space-Track.org password",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "<password>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a9f31022-5c72-4aa9-be4f-f4078acbc122",
+              "name": "Invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ajaxauth",
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Space-Track.org username (email address)",
+                        "type": "text/plain"
+                      },
+                      "key": "identity",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Space-Track.org password",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "<password>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.space-track.org",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "chocolatechip"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3bb8956d-208b-4124-b7e9-cfa1f88411b8",
+    "name": "Space-Track.org REST Authentication API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Space-Track.org is the official US Space Command (USSPACECOM) source for space situational awareness data. The REST API provides access to the satellite catalog (SATCAT), orbital element sets (GP/TLEs), conjunction data messages (CDMs), decay predictions (TIP), and space object history. Requires a free account. Authenticate via POST to /ajaxauth/login then use session cookies for subsequent requests.\n\nContact Support:\n Name: US Space Command / 18th Space Defense Squadron",
+      "type": "text/plain"
+    }
+  }
+}

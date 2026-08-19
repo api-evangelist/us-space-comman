@@ -1,0 +1,488 @@
+{
+  "item": [
+    {
+      "id": "8b4d3c98-1433-4201-8b5f-a775f48826d6",
+      "name": "Satellite Catalog",
+      "description": {
+        "content": "Satellite catalog metadata",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "137886b9-3f01-4890-abc7-f7b1c95c7ed9",
+          "name": "Query Satellite Catalog (SATCAT)",
+          "request": {
+            "name": "Query Satellite Catalog (SATCAT)",
+            "description": {
+              "content": "Returns satellite catalog information including object metadata, launch dates, countries of origin, and object classification.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "basicspacedata",
+                "query",
+                "class",
+                "satcat",
+                "format",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "NORAD_CAT_ID",
+                  "value": "<string>",
+                  "description": "NORAD catalog number"
+                },
+                {
+                  "disabled": false,
+                  "key": "INTLDES",
+                  "value": "<string>",
+                  "description": "International designator (e.g., 1998-067A for ISS)"
+                },
+                {
+                  "disabled": false,
+                  "key": "OBJECT_NAME",
+                  "value": "<string>",
+                  "description": "Object name (supports wildcard ~~)"
+                },
+                {
+                  "disabled": false,
+                  "key": "OBJECT_TYPE",
+                  "value": "<string>",
+                  "description": "Type filter (PAYLOAD, ROCKET BODY, DEBRIS, UNKNOWN)"
+                },
+                {
+                  "disabled": false,
+                  "key": "COUNTRY_CODE",
+                  "value": "<string>",
+                  "description": "Country code filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "LAUNCH_DATE",
+                  "value": "<string>",
+                  "description": "Launch date filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "DECAY_DATE",
+                  "value": "<string>",
+                  "description": "Decay date (use null-val for active objects)"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "json",
+                  "key": "format",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a080aa4a-4dbc-4771-8e6f-fd2eb6ef03af",
+              "name": "Satellite catalog entries",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "satcat",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "NORAD_CAT_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "INTLDES",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "OBJECT_NAME",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "OBJECT_TYPE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "COUNTRY_CODE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "LAUNCH_DATE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DECAY_DATE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"NORAD_CAT_ID\": 9911,\n    \"INTLDES\": \"string\",\n    \"OBJECT_NAME\": \"string\",\n    \"OBJECT_TYPE\": \"PAYLOAD\",\n    \"COUNTRY_CODE\": \"string\",\n    \"LAUNCH_DATE\": \"1946-10-21\",\n    \"SITE\": \"string\",\n    \"DECAY_DATE\": \"1998-03-18\",\n    \"RCSVALUE\": 4381,\n    \"COMMENT\": \"string\",\n    \"CCSDS_OMM_VERS\": \"string\"\n  },\n  {\n    \"NORAD_CAT_ID\": 3745,\n    \"INTLDES\": \"string\",\n    \"OBJECT_NAME\": \"string\",\n    \"OBJECT_TYPE\": \"DEBRIS\",\n    \"COUNTRY_CODE\": \"string\",\n    \"LAUNCH_DATE\": \"2019-06-28\",\n    \"SITE\": \"string\",\n    \"DECAY_DATE\": \"2011-02-22\",\n    \"RCSVALUE\": 9085,\n    \"COMMENT\": \"string\",\n    \"CCSDS_OMM_VERS\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e8b54ca-0208-4e1f-9d82-5f314ff71459",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "satcat",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "NORAD_CAT_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "INTLDES",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "OBJECT_NAME",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "OBJECT_TYPE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "COUNTRY_CODE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "LAUNCH_DATE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DECAY_DATE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c39ff1b1-533b-42b3-a59f-f277b8532b96",
+          "name": "Get Space Object Counts by Country (Boxscore)",
+          "request": {
+            "name": "Get Space Object Counts by Country (Boxscore)",
+            "description": {
+              "content": "Returns a count of tracked space objects by country and object type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "basicspacedata",
+                "query",
+                "class",
+                "boxscore",
+                "format",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "json",
+                  "key": "format",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "455aa88b-16b6-43cb-be28-18dc4b56ad95",
+              "name": "Object counts by country",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "boxscore",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d248270b-6539-4cb1-b0a0-a84eed071250",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "boxscore",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.space-track.org",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "chocolatechip"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "09416e15-330d-484a-a597-52f74d9e2e5f",
+    "name": "Space-Track.org REST Authentication Satellite Catalog API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Space-Track.org is the official US Space Command (USSPACECOM) source for space situational awareness data. The REST API provides access to the satellite catalog (SATCAT), orbital element sets (GP/TLEs), conjunction data messages (CDMs), decay predictions (TIP), and space object history. Requires a free account. Authenticate via POST to /ajaxauth/login then use session cookies for subsequent requests.\n\nContact Support:\n Name: US Space Command / 18th Space Defense Squadron",
+      "type": "text/plain"
+    }
+  }
+}

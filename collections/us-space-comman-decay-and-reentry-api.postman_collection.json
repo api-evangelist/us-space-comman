@@ -1,0 +1,472 @@
+{
+  "item": [
+    {
+      "id": "68baa4ae-c4fb-416a-89e8-d35d3756a05e",
+      "name": "Decay and Reentry",
+      "description": {
+        "content": "Satellite decay data and tracking impact predictions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c0a0589a-8c62-4b9e-b94b-ff0c57e65749",
+          "name": "List Satellite Decay Data",
+          "request": {
+            "name": "List Satellite Decay Data",
+            "description": {
+              "content": "Returns decay information for space objects that have reentered the atmosphere.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "basicspacedata",
+                "query",
+                "class",
+                "decay",
+                "format",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "NORAD_CAT_ID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "DECAY_EPOCH",
+                  "value": "<string>",
+                  "description": "Decay date filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "json",
+                  "key": "format",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6bde4091-6eac-4929-abf1-28aa05a09b95",
+              "name": "Decay data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "decay",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "NORAD_CAT_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DECAY_EPOCH",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"NORAD_CAT_ID\": 2993,\n    \"OBJECT_NAME\": \"string\",\n    \"INTLDES\": \"string\",\n    \"OBJECT_ID\": \"string\",\n    \"RCS\": \"string\",\n    \"RCS_SIZE\": \"string\",\n    \"COUNTRY\": \"string\",\n    \"MSG_EPOCH\": \"1984-10-23T17:55:05.907Z\",\n    \"DECAY_EPOCH\": \"1970-09-23\",\n    \"SOURCE\": \"string\",\n    \"MSG_TYPE\": \"string\",\n    \"PRECEDENCE\": 4239\n  },\n  {\n    \"NORAD_CAT_ID\": 1063,\n    \"OBJECT_NAME\": \"string\",\n    \"INTLDES\": \"string\",\n    \"OBJECT_ID\": \"string\",\n    \"RCS\": \"string\",\n    \"RCS_SIZE\": \"string\",\n    \"COUNTRY\": \"string\",\n    \"MSG_EPOCH\": \"1963-05-31T11:19:22.737Z\",\n    \"DECAY_EPOCH\": \"2023-04-01\",\n    \"SOURCE\": \"string\",\n    \"MSG_TYPE\": \"string\",\n    \"PRECEDENCE\": 7572\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60b4e043-1d02-4956-84ac-23865660e5a2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "decay",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "NORAD_CAT_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DECAY_EPOCH",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e1a8ae3d-c1cf-401b-a395-6540c904a886",
+          "name": "List Tracking and Impact Predictions (TIP)",
+          "request": {
+            "name": "List Tracking and Impact Predictions (TIP)",
+            "description": {
+              "content": "Returns Tracking and Impact Prediction (TIP) messages for objects expected to reenter the atmosphere.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "basicspacedata",
+                "query",
+                "class",
+                "tip",
+                "format",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "NORAD_CAT_ID",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "CCSDS_OD_SPAN",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "json",
+                  "key": "format",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6f667552-0fe1-429a-8a77-06cd7ccb3e71",
+              "name": "TIP messages",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "tip",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "NORAD_CAT_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "CCSDS_OD_SPAN",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b8fd527-590c-4150-9c74-04db044bdb52",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "tip",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "NORAD_CAT_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "CCSDS_OD_SPAN",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.space-track.org",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "chocolatechip"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "670bd994-24f2-4c66-a911-68697c9881b6",
+    "name": "Space-Track.org REST Authentication Decay and Reentry API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Space-Track.org is the official US Space Command (USSPACECOM) source for space situational awareness data. The REST API provides access to the satellite catalog (SATCAT), orbital element sets (GP/TLEs), conjunction data messages (CDMs), decay predictions (TIP), and space object history. Requires a free account. Authenticate via POST to /ajaxauth/login then use session cookies for subsequent requests.\n\nContact Support:\n Name: US Space Command / 18th Space Defense Squadron",
+      "type": "text/plain"
+    }
+  }
+}

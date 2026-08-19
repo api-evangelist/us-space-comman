@@ -1,0 +1,362 @@
+{
+  "item": [
+    {
+      "id": "1ad3f315-4a6e-4462-8a58-48e469389d5a",
+      "name": "General Perturbations",
+      "description": {
+        "content": "Current orbital element sets for tracked space objects",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a55262f7-489f-417d-9bc4-411ea0acea3b",
+          "name": "List Current General Perturbation Orbital Elements",
+          "request": {
+            "name": "List Current General Perturbation Orbital Elements",
+            "description": {
+              "content": "Returns the latest orbital element sets (GP/TLEs) for tracked objects. The GP class provides the newest element set per object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "basicspacedata",
+                "query",
+                "class",
+                "gp",
+                "format",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "NORAD_CAT_ID",
+                  "value": "<string>",
+                  "description": "NORAD catalog number (e.g., 25544 for ISS)"
+                },
+                {
+                  "disabled": false,
+                  "key": "OBJECT_NAME",
+                  "value": "<string>",
+                  "description": "Object name (supports wildcard ~~)"
+                },
+                {
+                  "disabled": false,
+                  "key": "EPOCH",
+                  "value": "<string>",
+                  "description": "Epoch filter (e.g., >now-30 for last 30 days)"
+                },
+                {
+                  "disabled": false,
+                  "key": "DECAY_DATE",
+                  "value": "<string>",
+                  "description": "Filter for active (null-val) or decayed objects"
+                },
+                {
+                  "disabled": false,
+                  "key": "INCLINATION",
+                  "value": "<string>",
+                  "description": "Orbital inclination filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "PERIOD",
+                  "value": "<string>",
+                  "description": "Orbital period filter (minutes)"
+                },
+                {
+                  "disabled": false,
+                  "key": "APOGEE",
+                  "value": "<string>",
+                  "description": "Apogee altitude filter (km)"
+                },
+                {
+                  "disabled": false,
+                  "key": "PERIGEE",
+                  "value": "<string>",
+                  "description": "Perigee altitude filter (km)"
+                },
+                {
+                  "disabled": false,
+                  "key": "COUNTRY_CODE",
+                  "value": "<string>",
+                  "description": "ISO country code of object owner"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "<string>",
+                  "description": "Sort field and direction (e.g., NORAD_CAT_ID asc)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Max number of results"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "json",
+                  "key": "format",
+                  "description": "(Required) Response format"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fd1f0e15-ff38-4eb1-9afe-6203224635a8",
+              "name": "Orbital element sets",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "gp",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "NORAD_CAT_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "OBJECT_NAME",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "EPOCH",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DECAY_DATE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "INCLINATION",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "PERIOD",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "APOGEE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "PERIGEE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "COUNTRY_CODE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) Response format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"CCSDS_OMM_VERS\": \"string\",\n    \"CLASSIFICATION_TYPE\": \"S\",\n    \"NORAD_CAT_ID\": 1720,\n    \"OBJECT_NAME\": \"string\",\n    \"OBJECT_ID\": \"string\",\n    \"OBJECT_TYPE\": \"DEBRIS\",\n    \"EPOCH\": \"2010-08-19T00:36:42.894Z\",\n    \"MEAN_MOTION\": 9754.68353299154,\n    \"ECCENTRICITY\": 6101.87815321378,\n    \"INCLINATION\": 3895.5333085894417,\n    \"RA_OF_ASC_NODE\": 7698.854764564873,\n    \"ARG_OF_PERICENTER\": 794.8927685454854,\n    \"MEAN_ANOMALY\": 4050.7525998008055,\n    \"EPHEMERIS_TYPE\": 3746,\n    \"ELEMENT_SET_NO\": 8628,\n    \"REV_AT_EPOCH\": 4633,\n    \"BSTAR\": 300.29147845761383,\n    \"APOGEE\": 9041.867628230682,\n    \"PERIGEE\": 8692.138808890417,\n    \"PERIOD\": 5598.293796584519,\n    \"COUNTRY_CODE\": \"string\"\n  },\n  {\n    \"CCSDS_OMM_VERS\": \"string\",\n    \"CLASSIFICATION_TYPE\": \"C\",\n    \"NORAD_CAT_ID\": 9818,\n    \"OBJECT_NAME\": \"string\",\n    \"OBJECT_ID\": \"string\",\n    \"OBJECT_TYPE\": \"PAYLOAD\",\n    \"EPOCH\": \"1994-03-25T17:42:30.374Z\",\n    \"MEAN_MOTION\": 7282.95307590565,\n    \"ECCENTRICITY\": 1088.2223509441847,\n    \"INCLINATION\": 127.03667055449341,\n    \"RA_OF_ASC_NODE\": 6466.4223709684675,\n    \"ARG_OF_PERICENTER\": 9069.21831106797,\n    \"MEAN_ANOMALY\": 957.1054369019616,\n    \"EPHEMERIS_TYPE\": 2813,\n    \"ELEMENT_SET_NO\": 654,\n    \"REV_AT_EPOCH\": 7657,\n    \"BSTAR\": 4547.413639049499,\n    \"APOGEE\": 1519.6896313419384,\n    \"PERIGEE\": 7512.1473620078,\n    \"PERIOD\": 1106.2183064973274,\n    \"COUNTRY_CODE\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68c0aec7-037c-43db-8045-2c66009f43ab",
+              "name": "Unauthorized - authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "gp",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "NORAD_CAT_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "OBJECT_NAME",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "EPOCH",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "DECAY_DATE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "INCLINATION",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "PERIOD",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "APOGEE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "PERIGEE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "COUNTRY_CODE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) Response format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.space-track.org",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "chocolatechip"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ebc0269e-bc49-4acc-8c61-b018058630b7",
+    "name": "Space-Track.org REST Authentication General Perturbations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Space-Track.org is the official US Space Command (USSPACECOM) source for space situational awareness data. The REST API provides access to the satellite catalog (SATCAT), orbital element sets (GP/TLEs), conjunction data messages (CDMs), decay predictions (TIP), and space object history. Requires a free account. Authenticate via POST to /ajaxauth/login then use session cookies for subsequent requests.\n\nContact Support:\n Name: US Space Command / 18th Space Defense Squadron",
+      "type": "text/plain"
+    }
+  }
+}

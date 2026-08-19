@@ -1,0 +1,90 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Space-Track.org REST Authentication Conjunction Data API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "chocolatechip",
+      "value": "{{chocolatechip}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Conjunction Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Conjunction Data Messages (CDM)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.space-track.org/basicspacedata/query/class/cdm_public/format/:format",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "SAT_1_ID",
+                "value": "",
+                "type": "query",
+                "description": "NORAD ID of primary object"
+              },
+              {
+                "name": "SAT_2_ID",
+                "value": "",
+                "type": "query",
+                "description": "NORAD ID of secondary object"
+              },
+              {
+                "name": "TCA_RANGE_START",
+                "value": "",
+                "type": "query",
+                "description": "Time of closest approach start filter (ISO 8601)"
+              },
+              {
+                "name": "TCA_RANGE_END",
+                "value": "",
+                "type": "query",
+                "description": "Time of closest approach end filter (ISO 8601)"
+              },
+              {
+                "name": "PC",
+                "value": "",
+                "type": "query",
+                "description": "Probability of collision filter (e.g., >0.0001)"
+              },
+              {
+                "name": "MISS_DISTANCE",
+                "value": "",
+                "type": "query",
+                "description": "Miss distance filter (km)"
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns publicly available Conjunction Data Messages (CDMs), which are notifications of potential close approaches between tracked objects. Sorted by collision probability descending."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Space-Track.org REST Authentication General Perturbations API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "chocolatechip",
+      "value": "{{chocolatechip}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "General Perturbations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Current General Perturbation Orbital Elements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.space-track.org/basicspacedata/query/class/gp/format/:format",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "Response format"
+              },
+              {
+                "name": "NORAD_CAT_ID",
+                "value": "",
+                "type": "query",
+                "description": "NORAD catalog number (e.g., 25544 for ISS)"
+              },
+              {
+                "name": "OBJECT_NAME",
+                "value": "",
+                "type": "query",
+                "description": "Object name (supports wildcard ~~)"
+              },
+              {
+                "name": "EPOCH",
+                "value": "",
+                "type": "query",
+                "description": "Epoch filter (e.g., >now-30 for last 30 days)"
+              },
+              {
+                "name": "DECAY_DATE",
+                "value": "",
+                "type": "query",
+                "description": "Filter for active (null-val) or decayed objects"
+              },
+              {
+                "name": "INCLINATION",
+                "value": "",
+                "type": "query",
+                "description": "Orbital inclination filter"
+              },
+              {
+                "name": "PERIOD",
+                "value": "",
+                "type": "query",
+                "description": "Orbital period filter (minutes)"
+              },
+              {
+                "name": "APOGEE",
+                "value": "",
+                "type": "query",
+                "description": "Apogee altitude filter (km)"
+              },
+              {
+                "name": "PERIGEE",
+                "value": "",
+                "type": "query",
+                "description": "Perigee altitude filter (km)"
+              },
+              {
+                "name": "COUNTRY_CODE",
+                "value": "",
+                "type": "query",
+                "description": "ISO country code of object owner"
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Sort field and direction (e.g., NORAD_CAT_ID asc)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max number of results"
+              }
+            ]
+          },
+          "docs": "Returns the latest orbital element sets (GP/TLEs) for tracked objects. The GP class provides the newest element set per object."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

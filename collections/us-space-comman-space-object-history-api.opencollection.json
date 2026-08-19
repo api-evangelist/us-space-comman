@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Space-Track.org REST Authentication Space Object History API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "chocolatechip",
+      "value": "{{chocolatechip}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Space Object History",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Historical General Perturbation Elements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.space-track.org/basicspacedata/query/class/gp_history/format/:format",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "NORAD_CAT_ID",
+                "value": "",
+                "type": "query",
+                "description": "NORAD catalog number (required to prevent full table scans)"
+              },
+              {
+                "name": "EPOCH",
+                "value": "",
+                "type": "query",
+                "description": "Epoch date range filter"
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns historical orbital element sets. Contains 138+ million records. Use with caution — apply filters to avoid large downloads."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

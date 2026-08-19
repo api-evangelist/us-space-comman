@@ -1,0 +1,318 @@
+{
+  "item": [
+    {
+      "id": "ee31b0cb-fb78-41af-be61-6d4cffc1529c",
+      "name": "Conjunction Data",
+      "description": {
+        "content": "Conjunction data messages (collision warnings)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f32dd7b0-7bd1-4a04-be08-191d09072e9a",
+          "name": "List Conjunction Data Messages (CDM)",
+          "request": {
+            "name": "List Conjunction Data Messages (CDM)",
+            "description": {
+              "content": "Returns publicly available Conjunction Data Messages (CDMs), which are notifications of potential close approaches between tracked objects. Sorted by collision probability descending.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "basicspacedata",
+                "query",
+                "class",
+                "cdm_public",
+                "format",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "SAT_1_ID",
+                  "value": "<string>",
+                  "description": "NORAD ID of primary object"
+                },
+                {
+                  "disabled": false,
+                  "key": "SAT_2_ID",
+                  "value": "<string>",
+                  "description": "NORAD ID of secondary object"
+                },
+                {
+                  "disabled": false,
+                  "key": "TCA_RANGE_START",
+                  "value": "<string>",
+                  "description": "Time of closest approach start filter (ISO 8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "TCA_RANGE_END",
+                  "value": "<string>",
+                  "description": "Time of closest approach end filter (ISO 8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "PC",
+                  "value": "<string>",
+                  "description": "Probability of collision filter (e.g., >0.0001)"
+                },
+                {
+                  "disabled": false,
+                  "key": "MISS_DISTANCE",
+                  "value": "<string>",
+                  "description": "Miss distance filter (km)"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "json",
+                  "key": "format",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "55fe8caa-0508-405a-8642-d82119f221fc",
+              "name": "Conjunction data messages",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "cdm_public",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "SAT_1_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "SAT_2_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "TCA_RANGE_START",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "TCA_RANGE_END",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "PC",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "MISS_DISTANCE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"CDM_ID\": 6798,\n    \"CREATED\": \"1947-07-29T06:07:23.452Z\",\n    \"EMERGENCY_REPORTABLE\": \"string\",\n    \"TCA\": \"2004-05-26T06:24:42.485Z\",\n    \"MIN_RNG\": 9897.47774353884,\n    \"PC\": 9081.358648466232,\n    \"SAT_1_ID\": 9893,\n    \"SAT_1_NAME\": \"string\",\n    \"SAT_2_ID\": 7344,\n    \"SAT_2_NAME\": \"string\",\n    \"SAT_1_TYPE\": \"string\",\n    \"SAT_2_TYPE\": \"string\",\n    \"MISS_DISTANCE\": 2896.0852880749767\n  },\n  {\n    \"CDM_ID\": 8929,\n    \"CREATED\": \"1969-03-14T09:05:49.218Z\",\n    \"EMERGENCY_REPORTABLE\": \"string\",\n    \"TCA\": \"1995-01-19T22:02:23.412Z\",\n    \"MIN_RNG\": 9280.361549708789,\n    \"PC\": 8018.1682930373845,\n    \"SAT_1_ID\": 9916,\n    \"SAT_1_NAME\": \"string\",\n    \"SAT_2_ID\": 2874,\n    \"SAT_2_NAME\": \"string\",\n    \"SAT_1_TYPE\": \"string\",\n    \"SAT_2_TYPE\": \"string\",\n    \"MISS_DISTANCE\": 7944.742256521872\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26358896-f433-4a36-ba8b-6fcccd821783",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "cdm_public",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "SAT_1_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "SAT_2_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "TCA_RANGE_START",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "TCA_RANGE_END",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "PC",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "MISS_DISTANCE",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.space-track.org",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "chocolatechip"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dfb4751c-7f27-484e-92ae-f43f56d3c097",
+    "name": "Space-Track.org REST Authentication Conjunction Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Space-Track.org is the official US Space Command (USSPACECOM) source for space situational awareness data. The REST API provides access to the satellite catalog (SATCAT), orbital element sets (GP/TLEs), conjunction data messages (CDMs), decay predictions (TIP), and space object history. Requires a free account. Authenticate via POST to /ajaxauth/login then use session cookies for subsequent requests.\n\nContact Support:\n Name: US Space Command / 18th Space Defense Squadron",
+      "type": "text/plain"
+    }
+  }
+}

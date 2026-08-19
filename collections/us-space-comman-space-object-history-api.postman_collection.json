@@ -1,0 +1,262 @@
+{
+  "item": [
+    {
+      "id": "8c0d9a71-c7f3-40f2-a3b5-4dcea80edbe4",
+      "name": "Space Object History",
+      "description": {
+        "content": "Historical orbital ephemerides",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e21c9c5c-371e-4605-b6a5-123b40982ca3",
+          "name": "List Historical General Perturbation Elements",
+          "request": {
+            "name": "List Historical General Perturbation Elements",
+            "description": {
+              "content": "Returns historical orbital element sets. Contains 138+ million records. Use with caution — apply filters to avoid large downloads.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "basicspacedata",
+                "query",
+                "class",
+                "gp_history",
+                "format",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "NORAD_CAT_ID",
+                  "value": "<string>",
+                  "description": "(Required) NORAD catalog number (required to prevent full table scans)"
+                },
+                {
+                  "disabled": false,
+                  "key": "EPOCH",
+                  "value": "<string>",
+                  "description": "Epoch date range filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "json",
+                  "key": "format",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "795b312b-daf0-4c32-a9f8-02501552e5e7",
+              "name": "Historical orbital element records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "gp_history",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "NORAD_CAT_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "EPOCH",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"CCSDS_OMM_VERS\": \"string\",\n    \"CLASSIFICATION_TYPE\": \"U\",\n    \"NORAD_CAT_ID\": 3091,\n    \"OBJECT_NAME\": \"string\",\n    \"OBJECT_ID\": \"string\",\n    \"OBJECT_TYPE\": \"ROCKET BODY\",\n    \"EPOCH\": \"2007-09-16T05:18:56.654Z\",\n    \"MEAN_MOTION\": 1725.305135776607,\n    \"ECCENTRICITY\": 159.92357073803532,\n    \"INCLINATION\": 3518.7421577706978,\n    \"RA_OF_ASC_NODE\": 8290.76311066994,\n    \"ARG_OF_PERICENTER\": 1421.755487510582,\n    \"MEAN_ANOMALY\": 8128.7493028905365,\n    \"EPHEMERIS_TYPE\": 9779,\n    \"ELEMENT_SET_NO\": 5206,\n    \"REV_AT_EPOCH\": 4422,\n    \"BSTAR\": 9165.800913936293,\n    \"APOGEE\": 5746.394736450568,\n    \"PERIGEE\": 4976.385864281595,\n    \"PERIOD\": 486.0617376398757,\n    \"COUNTRY_CODE\": \"string\"\n  },\n  {\n    \"CCSDS_OMM_VERS\": \"string\",\n    \"CLASSIFICATION_TYPE\": \"U\",\n    \"NORAD_CAT_ID\": 4458,\n    \"OBJECT_NAME\": \"string\",\n    \"OBJECT_ID\": \"string\",\n    \"OBJECT_TYPE\": \"PAYLOAD\",\n    \"EPOCH\": \"1997-04-17T21:25:24.013Z\",\n    \"MEAN_MOTION\": 1721.0666402511997,\n    \"ECCENTRICITY\": 4689.54954585686,\n    \"INCLINATION\": 3640.4953033145725,\n    \"RA_OF_ASC_NODE\": 1153.5935145234944,\n    \"ARG_OF_PERICENTER\": 9552.216007034027,\n    \"MEAN_ANOMALY\": 3646.135254283964,\n    \"EPHEMERIS_TYPE\": 2981,\n    \"ELEMENT_SET_NO\": 6019,\n    \"REV_AT_EPOCH\": 1477,\n    \"BSTAR\": 5718.297178134393,\n    \"APOGEE\": 8545.59142108332,\n    \"PERIGEE\": 7761.565222078109,\n    \"PERIOD\": 4918.719551432695,\n    \"COUNTRY_CODE\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1eb545a-fe37-43f3-aa29-ef98eaee66b6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "basicspacedata",
+                    "query",
+                    "class",
+                    "gp_history",
+                    "format",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "NORAD_CAT_ID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "EPOCH",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "chocolatechip",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.space-track.org",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "chocolatechip"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8906284b-e870-4fb7-bb3c-0489a8f66bb4",
+    "name": "Space-Track.org REST Authentication Space Object History API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Space-Track.org is the official US Space Command (USSPACECOM) source for space situational awareness data. The REST API provides access to the satellite catalog (SATCAT), orbital element sets (GP/TLEs), conjunction data messages (CDMs), decay predictions (TIP), and space object history. Requires a free account. Authenticate via POST to /ajaxauth/login then use session cookies for subsequent requests.\n\nContact Support:\n Name: US Space Command / 18th Space Defense Squadron",
+      "type": "text/plain"
+    }
+  }
+}

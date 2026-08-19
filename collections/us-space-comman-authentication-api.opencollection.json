@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Space-Track.org REST Authentication API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "chocolatechip",
+      "value": "{{chocolatechip}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authenticate with Space-Track.org",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.space-track.org/ajaxauth/login",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "identity",
+                  "value": ""
+                },
+                {
+                  "name": "password",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Authenticate using username and password credentials. On success, a session cookie is returned for use in subsequent API requests."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
