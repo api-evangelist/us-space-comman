@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Space-Track.org REST Authentication API
   description: Space-Track.org is the official US Space Command (USSPACECOM) source for space situational awareness data. The REST API provides access to the satellite catalog (SATCAT), orbital element sets (GP/TLEs), conjunction data messages (CDMs), decay predictions (TIP), and space object history. Requires a free account. Authenticate via POST to /ajaxauth/login then use session cookies for subsequent requests.
