@@ -90,7 +90,7 @@ apis:
     url: https://www.space-track.org
 name: US Space Command
 tags:
-  - Federal-Government
+  - Federal Government
   - Space
   - Space Situational Awareness
   - Satellite Tracking
@@ -101,6 +101,7 @@ tags_raw:
   - Space Situational Awareness
   - Satellite Tracking
   - Open Data
+  - Federal-Government
 kind: contract
 deliveryModel:
   model: unknown
