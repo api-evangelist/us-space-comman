@@ -1,4 +1,4 @@
-# US Space Command (us-space-comman)
+# US Space Command
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,55 +66,120 @@
 
 US Space Command (USSPACECOM) is a unified combatant command in the United States Department of Defense responsible for conducting operations in, from, and through space to deter conflict and, if necessary, defeat aggressors. The command provides space situational awareness (SSA) data through Space-Track.org, including the official satellite catalog with orbital element sets, conjunction warnings, and reentry predictions for all tracked objects.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/us-space-comman/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/us-space-comman/refs/heads/main/apis.yml)
+**Areas:** Federal Government · Space · Space Situational Awareness · Satellite Tracking · Open Data
 
-## Scope
+## US Space Command on APIs.io
 
-- **Position:** Consuming
-- **Access:** 3rd-Party
+Everything profiled for US Space Command is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/us-space-comman/](https://apis.io/providers/us-space-comman/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (6)
 
-- Federal Government
-- Space
-- Space Situational Awareness
-- Satellite Tracking
-- Open Data
+- [US Space Command Authentication API](https://apis.io/apis/us-space-comman/us-space-comman-authentication-api/) — Session-based authentication
+- [US Space Command Conjunction Data API](https://apis.io/apis/us-space-comman/us-space-comman-conjunction-data-api/) — Conjunction data messages (collision warnings)
+- [US Space Command Decay and Reentry API](https://apis.io/apis/us-space-comman/us-space-comman-decay-and-reentry-api/) — Satellite decay data and tracking impact predictions
+- [US Space Command General Perturbations API](https://apis.io/apis/us-space-comman/us-space-comman-general-perturbations-api/) — Current orbital element sets for tracked space objects
+- [US Space Command Satellite Catalog API](https://apis.io/apis/us-space-comman/us-space-comman-satellite-catalog-api/) — Satellite catalog metadata
+- [US Space Command Space Object History API](https://apis.io/apis/us-space-comman/us-space-comman-space-object-history-api/) — Historical orbital ephemerides
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-12-03
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Space-Track.org REST API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Space-Track.org is the official public source for US Space Command's satellite catalog and space situational awareness data, maintained by the 18th Space Defense Squadron. The REST API provides access to orbital element sets (GP/TLEs), the satellite catalog (SATCAT), conjunction data messages (CDMs), decay predictions (TIP), and space object history. Requires a free Space-Track.org account for authentication.
+- [Us Space Comman Agentic Access](https://apis.io/agentic-access/us-space-comman/us-space-comman-agentic-access/)
 
-- **Human URL:** [https://www.space-track.org/documentation](https://www.space-track.org/documentation)
+#### JSON Schema (1)
 
-#### Tags
+The data models the API reads and writes.
 
-- Space Situational Awareness
-- Orbital Data
-- Satellite Tracking
-- Federal Government
-- Open Data
+- [USSPACECOM General Perturbations (GP) Orbital Element Set](https://apis.io/schemas/us-space-comman/us-space-command-gp/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://www.space-track.org/documentation)
-- [Portal](https://www.space-track.org)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/us-space-comman/refs/heads/main/openapi/us-space-command-space-track-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/us-space-command-space-track.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/us-space-command-space-track.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Us Space Command Gp Structure](https://apis.io/json-structure/us-space-comman/us-space-command-gp-structure/)
 
-- [LinkedIn](https://www.linkedin.com/company/usspacecom)
+#### JSON-LD (1)
 
-## Maintainers
+Linked-data contexts for the provider's vocabulary.
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+- [Us Space Comman Context](https://apis.io/jsonld/us-space-comman/us-space-comman-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [US Space Command Space Situational Awareness Vocabulary](https://apis.io/vocabularies/us-space-comman/us-space-comman-vocabulary/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Space Track Conjunction Data Example](https://apis.io/examples/us-space-comman/space-track-conjunction-data-example/)
+- [Space Track Query Iss Gp Example](https://apis.io/examples/us-space-comman/space-track-query-iss-gp-example/)
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [Space-Track.org REST Authentication API](https://apis.io/collections/us-space-comman/open-us-space-comman-authentication-api/)
+- [Space-Track.org REST Authentication Conjunction Data API](https://apis.io/collections/us-space-comman/open-us-space-comman-conjunction-data-api/)
+- [Space-Track.org REST Authentication Decay and Reentry API](https://apis.io/collections/us-space-comman/open-us-space-comman-decay-and-reentry-api/)
+- [Space-Track.org REST Authentication General Perturbations API](https://apis.io/collections/us-space-comman/open-us-space-comman-general-perturbations-api/)
+- [Space-Track.org REST Authentication Satellite Catalog API](https://apis.io/collections/us-space-comman/open-us-space-comman-satellite-catalog-api/)
+- [Space-Track.org REST Authentication Space Object History API](https://apis.io/collections/us-space-comman/open-us-space-comman-space-object-history-api/)
+- [Space-Track.org REST API](https://apis.io/collections/us-space-comman/open-us-space-command-space-track/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [US Space Command — jsonschema rules](https://apis.io/rules/us-space-comman/us-space-comman-jsonschema-spectral-rules/)
+- [US Space Command API Rules](https://apis.io/rules/us-space-comman/us-space-comman-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Us Space Comman Authentication](https://apis.io/security/us-space-comman/us-space-comman-authentication/)
+- [Us Space Comman Domain Security](https://apis.io/security/us-space-comman/us-space-comman-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Us Space Comman Plans Pricing](https://apis.io/plans/us-space-comman/us-space-comman-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Us Space Comman Rate Limits](https://apis.io/rate-limits/us-space-comman/us-space-comman-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Us Space Comman Finops](https://apis.io/finops/us-space-comman/us-space-comman-finops/)
+
+## API Evangelist rating
+
+**Unrated** — no public website could be reached for this company, so there was almost nothing to measure and nothing a reader could check.
+
+This is not a score of zero. No rating is published for this company. If that is wrong because something public exists that we missed, say so on this repository or email [info@apievangelist.com](mailto:info@apievangelist.com) and it will be re-run — free, and no justification needed.
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for US Space Command: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/us-space-comman/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
